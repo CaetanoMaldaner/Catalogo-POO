@@ -1,0 +1,9 @@
+{
+    "name": "caetano.maldaner/catalogo-poo",
+    "autoload": {
+        "psr-4": {
+            "CaetanoMaldaner\\CatalogoPoo\\": "src/"
+        }
+    },
+    "require": {}
+}
