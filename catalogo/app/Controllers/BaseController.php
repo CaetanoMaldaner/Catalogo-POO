@@ -21,6 +21,16 @@ use Psr\Log\LoggerInterface;
  */
 abstract class BaseController extends Controller
 {
+
+    public function __construct()
+    {
+        if(!session()->get('isLoggedIn')){
+            return redirect()->to('/');
+        }else{
+            return redirect()->to('/dashboard');
+        }
+    }
+
     /**
      * Instance of the main Request object.
      *
@@ -50,7 +60,7 @@ abstract class BaseController extends Controller
     {
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
-
+      
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
