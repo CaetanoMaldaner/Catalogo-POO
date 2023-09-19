@@ -3,31 +3,43 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\UserModel;
+use App\Entities\User;
+use App\Services\UserService;
+use CodeIgniter\Config\Factories;
 
 class Auth extends BaseController
 {
+
+    private $userService;
+
+    public function __construct()
+    {
+        $this->userService = Factories::class(UserService::class);
+    }
+
     public function index()
     {
-        helper('form');
-        echo view('login');
+        echo view('dashboard');
+    }
+
+    public function register()
+    {
+        echo view('register');
     }
 
     public function authenticate(){
-        $userModel = new UserModel();
-
+       
         $email = $this->request->getPost('email');
         $senha = $this->request->getPost('senha');
-   
-        $user = $userModel->getUser($email);
-     
-        if($user && ($senha == $user['password'])){
-            session()->set('isLoggedIn', true);
-            return redirect()->to('/dashboard');
-        }else{
-            session()->setFlashdata('error', 'Usuário inválido');
-            return redirect()->back();
-        }
+        
+        return ($this->userService->authenticate($email, $senha)) ? redirect()->to('/dashboard') : redirect()->back();
+
+    }
+
+    public function createUser(){
+
+
+
     }
 
     public function logout(){

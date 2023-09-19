@@ -23,6 +23,10 @@ class User extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '255',
             ],
+            'created_at' => [
+                'type' => 'timestamp',
+                'null' => null,
+            ]
         ]);
 
         $this->forge->addKey('id', true);
