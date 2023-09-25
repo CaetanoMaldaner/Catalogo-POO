@@ -6,6 +6,8 @@ use App\Controllers\BaseController;
 use App\Entities\User;
 use App\Services\UserService;
 use CodeIgniter\Config\Factories;
+use App\Models\UserModel;
+
 
 class Auth extends BaseController
 {
@@ -27,22 +29,43 @@ class Auth extends BaseController
         echo view('register');
     }
 
-    public function authenticate(){
-       
+    public function authenticate()
+    {
+
         $email = $this->request->getPost('email');
         $senha = $this->request->getPost('senha');
-        
+
         return ($this->userService->authenticate($email, $senha)) ? redirect()->to('/dashboard') : redirect()->back();
-
     }
 
-    public function createUser(){
+    public function createUser()
+    {
+
+        if ($this->request->getPost()) {
+
+            $data = [
+                'email' => $this->request->getPost('email'),
+                'password' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
+                'created_at' => date('Y-m-d H:i:s'),
+            ];
+
+            $userModel = new UserModel();
+
+            if ($userModel->insert($data)) {
+
+                return redirect()->to('login');
+            } else {
+
+                return redirect()->back()->with('error', 'Erro ao criar usuário');
+            }
+        }
 
 
-
+        return view('auth/create_user_form');
     }
 
-    public function logout(){
+    public function logout()
+    {
         session()->destroy();
         return redirect()->to('/');
     }

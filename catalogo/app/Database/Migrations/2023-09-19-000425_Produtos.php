@@ -11,7 +11,7 @@ class Produtos extends Migration
         $this->forge->addField([
             'id' => [
                 'type' => 'INT',
-                'constraint' => 5,
+                'constraint' => 11,
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
@@ -31,13 +31,25 @@ class Produtos extends Migration
                 'constraint' => 255,
                 'null' => true, // Pode ser nulo se você estiver lidando com produtos sem imagens.
             ],
+            'categoria_id' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'null' => true, // Pode ser nulo se você estiver lidando com produtos sem imagens.
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
-                'null' => true, // Defina como 'false' se você deseja um valor padrão para a data de criação.
+                'null' => true,
+                'default' => null 
             ],
             'updated_at' => [
                 'type' => 'DATETIME',
-                'null' => true, // Defina como 'false' se você deseja um valor padrão para a data de atualização.
+                'null' => true,
+                'default' => null
+            ],
+            'deleted_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+                'default' => null
             ],
         ]);
 
