@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Categoria extends Migration
+class Carrinho extends Migration
 {
     public function up()
     {
@@ -15,9 +15,9 @@ class Categoria extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'nome' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
+            'user_id' => [
+                'type' => 'INT',
+                'unsigned' => true,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -33,12 +33,13 @@ class Categoria extends Migration
             ],
         ]);
 
-        $this->forge->addPrimaryKey('id', true);
-        $this->forge->createTable('categoria');
+        $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('user_id', 'users', 'id');
+        $this->forge->createTable('carrinho');
     }
 
     public function down()
     {
-        $this->forge->dropTable('categoria');
+        $this->forge->dropTable('carrinho');
     }
 }
