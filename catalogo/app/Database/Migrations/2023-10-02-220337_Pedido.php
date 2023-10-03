@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class ProdutoCarrinho extends Migration
+class Pedido extends Migration
 {
     public function up()
     {
@@ -15,14 +15,17 @@ class ProdutoCarrinho extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'produtos_id' => [
+            'user_id' => [
                 'type' => 'INT',
-                'constraint' => 11,
                 'unsigned' => true,
             ],
-            'quantity' => [
-                'type' => 'INT',
-                'constraint' => 11,
+            'total' => [
+                'type' => 'DECIMAL',
+                'constraint' => '10,2',
+            ],
+            'status' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -36,15 +39,16 @@ class ProdutoCarrinho extends Migration
                 'type' => 'DATETIME',
                 'null' => true,
             ],
+            
         ]);
-        
-    $this->forge->addKey('id', true);
-    $this->forge->addForeignKey('produtos_id', 'produtos', 'id');
-    $this->forge->createTable('produto_carrinho');
-      
+
+        $this->forge->addKey('id');
+        $this->forge->addForeignKey('user_id', 'users', 'id');
+        $this->forge->createTable('pedidos');
     }
+
     public function down()
     {
-        $this->forge->dropTable('produto_carrinho');
+        $this->forge->dropTable('pedidos');
     }
 }

@@ -8,7 +8,6 @@ use App\Services\UserService;
 use CodeIgniter\Config\Factories;
 use App\Models\UserModel;
 
-
 class Auth extends BaseController
 {
 
@@ -21,7 +20,7 @@ class Auth extends BaseController
 
     public function index()
     {
-        echo view('dashboard');
+        echo view('login');
     }
 
     public function register()
@@ -35,7 +34,7 @@ class Auth extends BaseController
         $email = $this->request->getPost('email');
         $senha = $this->request->getPost('senha');
 
-        return ($this->userService->authenticate($email, $senha)) ? redirect()->to('/dashboard') : redirect()->back();
+        return ($this->userService->authenticate($email, $senha)) ? redirect()->to('/welcome_message') : redirect()->back();
     }
 
     public function createUser()
@@ -53,7 +52,7 @@ class Auth extends BaseController
 
             if ($userModel->insert($data)) {
 
-                return redirect()->to('login');
+                return redirect()->to('/');
             } else {
 
                 return redirect()->back()->with('error', 'Erro ao criar usuário');

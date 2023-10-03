@@ -4,18 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class ProdutoModel extends Model
 
 {
-
     protected $DBGroup          = 'default';
-    protected $table            = 'users';
+    protected $table            = 'produtos';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['email', 'password', 'created_at'];
+    protected $allowedFields    = ['nome','descricao','preco','imagem','categoria_id'];
 
     // Dates
     protected $useTimestamps = false;
@@ -43,48 +42,56 @@ class UserModel extends Model
 
     //METODOS
 
-    // Método para buscar um usuário por ID
-    public function getUserById($userId)
+    // Método para buscar um produto por ID
+    public function getProdutoById($produtoId)
     {
-        return $this->find($userId);
+        return $this->find($produtoId);
     }
 
-    // Método para buscar um usuário por email
-    public function getUserByEmail($email)
+    // Método para buscar um produto por preço
+    public function getProdutoByPreco($produtoPreco)
     {
-        return $this->where('email', $email)->first();
+        //'preco' é o campo da tabela q ele vai comparar com o valor inserido em $produtoPreco
+        return $this->where('preco', $produtoPreco)->findAll();
     }
+
+    // Método para buscar um produto por categoria
+    public function getProdutoByCategoria($produtoCategoria)
+    {
+    return $this->where('categoria', $produtoCategoria)->findAll();
+    }
+
 
     //Metodos de UPDATE e DELETE retornam true se a alteração for bem sucedida e false caso não seja
 
-    public function createUser($data)
+    public function createProduct($data)
     {
         // Verifique se os campos fornecidos são válidos
-        if (!isset($data['email'], $data['password'])) {
+        if (!isset($data['nome'], $data['descricao'], $data['preco'], $data['imagem'], $data['categoria_id'])) {
             return false;
         }
 
         // Crie um array de dados a serem inseridos no banco de dados
-        $userData = [
-            'email'    => $data['email'],
-            'password' => password_hash($data['password'], PASSWORD_BCRYPT), 
+        $productData = [
+            'nome'         => $data['nome'],
+            'descricao'    => $data['descricao'],
+            'preco'        => $data['preco'],
+            'imagem'       => $data['imagem'],
+            'categoria_id' => $data['categoria_id'],
         ];
 
         // Insira os dados no banco de dados
-        return $this->insert($userData);
+        return $this->insert($productData);
     }
 
-    // Método para atualizar um usuário por ID
-    public function updateUser($userId, $data)
+    public function updateProduto($produtoId, $data)
     {
-        return $this->update($userId, $data);
+        return $this->update($produtoId, $data);
     }
 
-    // Método para deletar um usuário por ID
-    public function deleteUser($userId)
+    public function deleteProduto($produtoId)
     {
-        return $this->delete($userId);
+        return $this->delete($produtoId);
     }
-
 
 }

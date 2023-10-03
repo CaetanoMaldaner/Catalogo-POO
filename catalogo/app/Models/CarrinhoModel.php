@@ -4,18 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class CarrinhoModel extends Model
 
 {
-
     protected $DBGroup          = 'default';
-    protected $table            = 'users';
+    protected $table            = 'carrinho';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['email', 'password', 'created_at'];
+    protected $allowedFields    = ['user_id','produto_id','quantidade'];
 
     // Dates
     protected $useTimestamps = false;
@@ -43,48 +42,56 @@ class UserModel extends Model
 
     //METODOS
 
-    // Método para buscar um usuário por ID
-    public function getUserById($userId)
+    
+    public function getCarrinhoByUserId($user_id)
     {
-        return $this->find($userId);
+        return $this->find($user_id);
     }
 
-    // Método para buscar um usuário por email
-    public function getUserByEmail($email)
+    
+    public function getCarrinhoByProdutoId($produto_id)
     {
-        return $this->where('email', $email)->first();
+      
+        return $this->where('produto_id', $produto_id)->findAll();
     }
 
-    //Metodos de UPDATE e DELETE retornam true se a alteração for bem sucedida e false caso não seja
+    
+    public function getCarrinhoByQuantidade($carrinhoQuantidade)
+    {
+    return $this->where('quantidade', $carrinhoQuantidade)->findAll();
+    }
 
-    public function createUser($data)
+
+    public function createCarrinho($data)
     {
         // Verifique se os campos fornecidos são válidos
-        if (!isset($data['email'], $data['password'])) {
+        if (!isset($data['user_id'], $data['produto_id'], $data['quantidade'])) {
             return false;
         }
 
         // Crie um array de dados a serem inseridos no banco de dados
-        $userData = [
-            'email'    => $data['email'],
-            'password' => password_hash($data['password'], PASSWORD_BCRYPT), 
+        $carrinhoData = [
+            'user_id'    => $data['user_id'],
+            'produto_id' => $data['produto_id'],
+            'quantidade' => $data['quantidade'],
         ];
 
         // Insira os dados no banco de dados
-        return $this->insert($userData);
+        return $this->insert($carrinhoData);
     }
 
-    // Método para atualizar um usuário por ID
-    public function updateUser($userId, $data)
+
+    //Metodos de UPDATE e DELETE retornam true se a alteração for bem sucedida e false caso não seja
+
+    public function updateCarrinho($carrinhoId, $data)
     {
-        return $this->update($userId, $data);
+        return $this->update($carrinhoId, $data);
     }
 
-    // Método para deletar um usuário por ID
-    public function deleteUser($userId)
+
+    public function deleteCarrinho($carrinhoId)
     {
-        return $this->delete($userId);
+        return $this->delete($carrinhoId);
     }
-
 
 }
