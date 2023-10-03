@@ -16,4 +16,11 @@ use CodeIgniter\Router\RouteCollection;
  
  $routes->get('dashboard', 'Home::index', ['filter'=>'auth']);
 
+ //carrinho
+$routes->get('carrinho', 'Carrinho::index');
+$routes->get('carrinho/add/(:num)', 'Carrinho::addToCarrinho/$1');
+$routes->get('carrinho/remove/(:num)', 'Carrinho::removeFromCarrinho/$1');
+$routes->get('carrinho/clear', 'Carrinho::clearCarrinho');
+
+
  
