@@ -19,6 +19,14 @@ class Carrinho extends Migration
                 'type' => 'INT',
                 'unsigned' => true,
             ],
+            'produto_id' => [
+                'type' => 'INT',
+                'unsigned' => true,
+            ],
+            'quantidade' => [
+                'type' => 'INT',
+                'unsigned' => true,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true, 
@@ -35,6 +43,7 @@ class Carrinho extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('user_id', 'users', 'id');
+        $this->forge->addForeignKey('produto_id', 'produtos', 'id');
         $this->forge->createTable('carrinho');
     }
 

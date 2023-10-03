@@ -29,12 +29,12 @@ class Produtos extends Migration
             'imagem' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-                'null' => true, // Pode ser nulo se você estiver lidando com produtos sem imagens.
+                'null' => true, 
             ],
             'categoria_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
-                'null' => true, // Pode ser nulo se você estiver lidando com produtos sem imagens.
+                'null' => true, 
             ],
             'created_at' => [
                 'type' => 'DATETIME',

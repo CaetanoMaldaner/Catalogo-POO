@@ -11,6 +11,7 @@ use CodeIgniter\Router\RouteCollection;
  $routes->get('logout', 'Auth::logout');
  $routes->get('create', 'Auth::create');
  $routes->get('register', 'Auth::register');
+ $routes->get('login', 'Auth::login');
  $routes->post('createUser', 'Auth::createUser');
  
  $routes->get('dashboard', 'Home::index', ['filter'=>'auth']);
