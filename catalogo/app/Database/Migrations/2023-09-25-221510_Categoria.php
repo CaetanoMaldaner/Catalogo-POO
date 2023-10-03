@@ -33,7 +33,7 @@ class Categoria extends Migration
             ],
         ]);
 
-        $this->forge->addPrimaryKey('id', true);
+        $this->forge->addKey('id', true);
         $this->forge->createTable('categoria');
     }
 

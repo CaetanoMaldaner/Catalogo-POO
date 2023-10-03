@@ -21,7 +21,7 @@ class Auth extends BaseController
 
     public function index()
     {
-        echo view('dashboard');
+        echo view('login');
     }
 
     public function register()
@@ -40,7 +40,7 @@ class Auth extends BaseController
 
     public function createUser()
     {
-
+        
         if ($this->request->getPost()) {
 
             $data = [

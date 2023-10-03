@@ -33,7 +33,7 @@ class Carrinho extends Migration
             ],
         ]);
 
-        $this->forge->addPrimaryKey('id', true);
+        $this->forge->addKey('id', true);
         $this->forge->addForeignKey('user_id', 'users', 'id');
         $this->forge->createTable('carrinho');
     }

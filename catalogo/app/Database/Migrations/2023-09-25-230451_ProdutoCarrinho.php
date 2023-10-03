@@ -15,7 +15,7 @@ class ProdutoCarrinho extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
-            'product_id' => [
+            'produtos_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
@@ -39,7 +39,7 @@ class ProdutoCarrinho extends Migration
         ]);
         
     $this->forge->addKey('id', true);
-    $this->forge->addForeignKey('produto_id', 'produtos', 'id');
+    $this->forge->addForeignKey('produtos_id', 'produtos', 'id');
     $this->forge->createTable('produto_carrinho');
       
     }
