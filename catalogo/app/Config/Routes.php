@@ -22,5 +22,9 @@ $routes->get('carrinho/add/(:num)', 'Carrinho::addToCarrinho/$1');
 $routes->get('carrinho/remove/(:num)', 'Carrinho::removeFromCarrinho/$1');
 $routes->get('carrinho/clear', 'Carrinho::clearCarrinho');
 
+//teste
+$routes->get('teste', 'TesteController::index');
+
+
 
  
