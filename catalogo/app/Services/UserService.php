@@ -1,56 +1,45 @@
 <?php
-
 namespace App\Services;
 
 use App\Entities\User;
 use App\Models\UserModel;
-use CodeIgniter\Config\Factories;
 
-class UserService{
-
+class UserService
+{
     protected $userModel;
 
-    public function __construct()
+    public function __construct(UserModel $userModel)
     {
-        $this->userModel = Factories::models(UserModel::class);
+        $this->userModel = $userModel;
     }
 
-    public function authenticate($email, $senha){
-
-        $user = $this->userModel->getUser($email);
-       
-        if($user && password_verify($senha, $user->password)){
-           
-            $variavalDeSessao = [
-                'email' => $user->email,
-                'data_login' => bd2br(date('Y-m-d')),
-                'data_cad' => $user->created_at,
-                'isLoggedIn' => true,
-            ];
-      
-            session()->set($variavalDeSessao);
-           
-            return true;
-        }else{
-            session()->setFlashdata('error', 'Usuário inválido');
-            return false;
-        }
+    // Método para criar um novo usuário
+    public function createUser($data)
+    {
+        return $this->userModel->createUser($data);
     }
 
-    public function createUser($email, $password){
-
-        $user = new User();
-       
-        $user->email = $email;
-        $user->password = $password;
-    
-        if($this->userModel->save($user)){
-            session()->setFlashdata('success', 'Login criado com sucesso');
-            return redirect()->to('/');
-        }else{
-            return redirect()->back()->withInput()->with('errors', $this->userModel->errors()); 
-        }
-
+    // Método para atualizar um usuário
+    public function updateUser($userId, $data)
+    {
+        return $this->userModel->updateUser($userId, $data);
     }
 
+    // Método para deletar um usuário
+    public function deleteUser($userId)
+    {
+        return $this->userModel->deleteUser($userId);
+    }
+
+    // Método para buscar um usuário por ID
+    public function getUserById($userId)
+    {
+        return $this->userModel->getUserById($userId);
+    }
+
+    // Método para buscar um usuário por email
+    public function getUserByEmail($email)
+    {
+        return $this->userModel->getUserByEmail($email);
+    }
 }
