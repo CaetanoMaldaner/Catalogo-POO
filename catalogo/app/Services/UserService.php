@@ -8,7 +8,7 @@ class UserService
 {
     protected $userModel;
 
-    public function __construct(UserModel $userModel)
+    public function __construct(UserModel $userModel = null)
     {
         $this->userModel = $userModel;
     }
