@@ -1,22 +1,23 @@
 <?php
 namespace App\Services;
 
-use App\Entities\User;
 use App\Models\UserModel;
 
 class UserService
 {
     protected $userModel;
 
-    public function __construct(UserModel $userModel = null)
+    public function __construct()
     {
-        $this->userModel = $userModel;
+        $this->userModel = new UserModel();
     }
 
     public function authenticate($email, $senha)
     {
+        
         // Buscar o usuário pelo email
         $user = $this->userModel->getUserByEmail($email);
+        
 
         if ($user) {
             // Verificar se a senha fornecida corresponde à senha no banco de dados

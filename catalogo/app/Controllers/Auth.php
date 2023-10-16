@@ -28,12 +28,18 @@ class Auth extends BaseController
         echo view('register');
     }
 
+    public function welcomeMessage()
+    {
+        echo view('welcome_message');
+    }
+
+
     public function authenticate()
     {
-
+        
         $email = $this->request->getPost('email');
         $senha = $this->request->getPost('senha');
-
+        
         return ($this->userService->authenticate($email, $senha)) ? redirect()->to('/welcome_message') : redirect()->back();
     }
 

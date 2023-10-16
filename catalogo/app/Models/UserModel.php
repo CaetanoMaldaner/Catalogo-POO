@@ -52,6 +52,7 @@ class UserModel extends Model
     // Método para buscar um usuário por email
     public function getUserByEmail($email)
     {
+        
         return $this->where('email', $email)->first();
     }
 

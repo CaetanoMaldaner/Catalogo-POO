@@ -15,7 +15,9 @@ use CodeIgniter\Router\RouteCollection;
  $routes->post('createUser', 'Auth::createUser');
  
  $routes->get('dashboard', 'Home::index', ['filter' => 'auth']);
- 
+
+$routes->get('/welcome_message', 'Auth::welcomeMessage');
+
  // Rotas do carrinho
  $routes->get('carrinho', 'Carrinho::index');
  $routes->get('carrinho/add/(:num)', 'Carrinho::addToCarrinho/$1');
