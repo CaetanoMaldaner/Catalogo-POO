@@ -5,7 +5,7 @@
 
 <form action="/authenticate" method="post">
     <div class="form-group">
-        <label>Username</label>
+        <label>Username0</label>
         <input type="text" name="email" class="form-control" required>
     </div>
     <div class="form-group">
