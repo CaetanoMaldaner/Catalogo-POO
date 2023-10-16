@@ -14,17 +14,16 @@ use CodeIgniter\Router\RouteCollection;
  $routes->get('login', 'Auth::login');
  $routes->post('createUser', 'Auth::createUser');
  
- $routes->get('dashboard', 'Home::index', ['filter'=>'auth']);
-
- //carrinho
-$routes->get('carrinho', 'Carrinho::index');
-$routes->get('carrinho/add/(:num)', 'Carrinho::addToCarrinho/$1');
-$routes->get('carrinho/remove/(:num)', 'Carrinho::removeFromCarrinho/$1');
-$routes->get('carrinho/clear', 'Carrinho::clearCarrinho');
-
-//teste
-$routes->get('teste', 'TesteController::index');
-
-
+ $routes->get('dashboard', 'Home::index', ['filter' => 'auth']);
+ 
+ // Rotas do carrinho
+ $routes->get('carrinho', 'Carrinho::index');
+ $routes->get('carrinho/add/(:num)', 'Carrinho::addToCarrinho/$1');
+ $routes->get('carrinho/remove/(:num)', 'Carrinho::removeFromCarrinho/$1');
+ $routes->get('carrinho/clear', 'Carrinho::clearCarrinho');
+ 
+ // Rota de teste
+ $routes->get('teste', 'TesteController::index');
+ 
 
  

@@ -13,6 +13,25 @@ class UserService
         $this->userModel = $userModel;
     }
 
+    public function authenticate($email, $senha)
+    {
+        // Buscar o usuário pelo email
+        $user = $this->userModel->getUserByEmail($email);
+
+        if ($user) {
+            // Verificar se a senha fornecida corresponde à senha no banco de dados
+            if (password_verify($senha, $user['password'])) {
+                
+                session()->set('user_id', $user['id']);
+                return true;
+            }
+        }
+
+        // Usuário não encontrado ou senha incorreta
+        return false;
+    }
+
+
     // Método para criar um novo usuário
     public function createUser($data)
     {
