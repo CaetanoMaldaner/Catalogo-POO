@@ -28,9 +28,9 @@ class Auth extends BaseController
         echo view('register');
     }
 
-    public function welcomeMessage()
+    public function dashboard()
     {
-        echo view('welcome_message');
+        echo view('teste');
     }
 
 

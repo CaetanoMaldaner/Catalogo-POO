@@ -7,3 +7,16 @@
 
     
 </form>
+
+<!-- view_usuarios.php -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Usuários</title>
+</head>
+<body>
+    <h2>Lista de Usuários</h2>
+
+
+
+

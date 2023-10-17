@@ -16,7 +16,7 @@ use CodeIgniter\Router\RouteCollection;
  
  $routes->get('dashboard', 'Home::index', ['filter' => 'auth']);
 
-$routes->get('/welcome_message', 'Auth::welcomeMessage');
+$routes->get('/welcome_message', 'Auth::dashboard');
 
  // Rotas do carrinho
  $routes->get('carrinho', 'Carrinho::index');
@@ -27,5 +27,7 @@ $routes->get('/welcome_message', 'Auth::welcomeMessage');
  // Rota de teste
  $routes->get('teste', 'TesteController::index');
  
+//
+$routes->get('/user/delete/(:num)', 'UserController::delete/$1');
 
  
