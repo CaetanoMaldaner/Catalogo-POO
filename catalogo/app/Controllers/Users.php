@@ -127,4 +127,7 @@ class Users extends BaseController
             return redirect()->to('/erro');
         }
     }
+
+    
+  
 }
