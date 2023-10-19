@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Entities\Produto;
 use CodeIgniter\Model;
 
 class ProdutoModel extends Model
@@ -11,7 +12,7 @@ class ProdutoModel extends Model
     protected $table            = 'produtos';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = Produto::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = ['nome','descricao','preco','imagem','categoria_id'];
@@ -62,27 +63,7 @@ class ProdutoModel extends Model
     }
 
 
-    //Metodos de UPDATE e DELETE retornam true se a alteração for bem sucedida e false caso não seja
 
-    public function createProduct($data)
-    {
-        // Verifique se os campos fornecidos são válidos
-        if (!isset($data['nome'], $data['descricao'], $data['preco'], $data['imagem'], $data['categoria_id'])) {
-            return false;
-        }
-
-        // Crie um array de dados a serem inseridos no banco de dados
-        $productData = [
-            'nome'         => $data['nome'],
-            'descricao'    => $data['descricao'],
-            'preco'        => $data['preco'],
-            'imagem'       => $data['imagem'],
-            'categoria_id' => $data['categoria_id'],
-        ];
-
-        // Insira os dados no banco de dados
-        return $this->insert($productData);
-    }
 
     public function updateProduto($produtoId, $data)
     {

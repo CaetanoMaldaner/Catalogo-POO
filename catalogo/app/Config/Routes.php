@@ -23,12 +23,6 @@ $routes->get('/welcome_message', 'Auth::dashboard');
  $routes->get('carrinho/add/(:num)', 'Carrinho::addToCarrinho/$1');
  $routes->get('carrinho/remove/(:num)', 'Carrinho::removeFromCarrinho/$1');
  $routes->get('carrinho/clear', 'Carrinho::clearCarrinho');
- 
- // Rota de teste
- $routes->get('teste', 'TesteController::index');
- 
-//
-$routes->get('/user/delete/(:num)', 'UserController::delete/$1');
 
  
  $routes->get('produtos', 'ProdutoController::index');
@@ -40,7 +34,7 @@ $routes->get('/user/delete/(:num)', 'UserController::delete/$1');
  $routes->post('produtos/store', 'ProdutoController::store');
  
  // Rota para exibir o formulário de edição de produto
- $routes->get('produtos/edit/(:num)', 'ProdutoController::edit/$1');
+ $routes->get('produtos/edit/(:num)', 'ProdutoController::edit/$1', ['filter' => 'auth']);
  // Rota para processar o formulário de edição de produto
  $routes->post('produtos/update/(:num)', 'ProdutoController::update/$1');
  
