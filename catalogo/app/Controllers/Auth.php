@@ -43,6 +43,7 @@ class Auth extends BaseController
         return ($this->userService->authenticate($email, $senha)) ? redirect()->to('/welcome_message') : redirect()->back();
     }
 
+
     public function createUser()
     {
 
