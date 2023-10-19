@@ -19,30 +19,23 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/welcome_message', 'Auth::dashboard');
 
  // Rotas do carrinho
- $routes->get('/carrinho', 'Carrinho::index');
- $routes->get('/carrinho/adicionar/(:num)', 'Carrinho::addToCarrinho/$1');
- $routes->get('/carrinho/remover/(:num)', 'Carrinho::removeFromCarrinho/$1');
- $routes->get('/carrinho/limpar', 'Carrinho::clearCarrinho');
- 
- 
- // Rota de teste
- $routes->get('teste', 'TesteController::index');
- 
-//
+ $routes->get('carrinho', 'Carrinho::index');
+ $routes->get('carrinho/add/(:num)', 'Carrinho::addToCarrinho/$1');
+ $routes->get('carrinho/remove/(:num)', 'Carrinho::removeFromCarrinho/$1');
+ $routes->get('carrinho/clear', 'Carrinho::clearCarrinho');
 
-
-
+ 
  $routes->get('produtos', 'ProdutoController::index');
-  // Rota para visualizar um produto específico
- $routes->get('produtos/(:num)', 'ProdutoController::show/$1'); 
-//
+ $routes->get('produtos/(:num)', 'ProdutoController::show/$1'); // Rota para visualizar um produto específico
+ 
+ // Rota para exibir o formulário de criação de produto
  $routes->get('produtos/create', 'ProdutoController::create');
-
+ // Rota para processar o formulário de criação de produto
  $routes->post('produtos/store', 'ProdutoController::store');
  
-
- $routes->get('produtos/edit/(:num)', 'ProdutoController::edit/$1');
-
+ // Rota para exibir o formulário de edição de produto
+ $routes->get('produtos/edit/(:num)', 'ProdutoController::edit/$1', ['filter' => 'auth']);
+ // Rota para processar o formulário de edição de produto
  $routes->post('produtos/update/(:num)', 'ProdutoController::update/$1');
  
  // Rota para deletar um produto

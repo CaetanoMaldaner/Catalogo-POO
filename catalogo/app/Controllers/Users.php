@@ -42,7 +42,7 @@ class Users extends BaseController
 
                 if ($result === true) {
                     // Sucesso na criação do usuário
-                    return redirect()->to('/dashboard'); // Redireciona para a página de sucesso
+                    return redirect()->to('/dashboard'); // Redireciona para a página do dashboard
                 }
             }
         }

@@ -3,15 +3,26 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\CategoriaModel;
 use App\Models\ProdutoModel;
+use App\Services\ProdutoService;
+use CodeIgniter\Config\Factories;
 
 class ProdutoController extends BaseController
 {
+
+    private $produtoService;
+
+    public function __construct()
+    {
+        $this->produtoService = Factories::class(ProdutoService::class);
+    }
+
     public function index()
     {
         $produtoModel = new ProdutoModel();
 
-        $data['produto'] = $produtoModel->findAll();
+        $data['produtos'] = $produtoModel->findAll();
 
         return view('produto/index', $data);
     }
@@ -30,24 +41,22 @@ class ProdutoController extends BaseController
     }
 
 
-    public function createProduto()
-    {
-        return view('produto/create');
+    public function create()
+    {   
+        $categoriaModel = new CategoriaModel();
+        $data = [
+            'categorias' =>  $categoriaModel->findAll()
+        ];
+        return view('produto/create', $data);
     }
 
-    public function storeProduto()
+    public function store()
     {
-        $produtoModel = new ProdutoModel();
 
-        $data = [
-            'nome'         => $this->request->getPost('nome'),
-            'descricao'    => $this->request->getPost('descricao'),
-            'preco'        => $this->request->getPost('preco'),
-            'imagem'       => $this->request->getPost('imagem'),
-            'categoria_id' => $this->request->getPost('categoria_id'),
-        ];
-
-        $produtoModel->createProduct($data);
+        // fazer a validação do fomrulario
+        if($this->request->getPost()){
+            $this->produtoService->createProduct($this->request->getPost());
+        }
 
         return redirect()->to('/produtos'); // Redirecionar para a lista de produtos
     }
