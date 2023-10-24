@@ -55,6 +55,7 @@ class Produtos extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->createTable('produtos');
+        $this->forge->addForeignKey('categoria_id', 'categoria', 'id');
     }
 
     public function down()
