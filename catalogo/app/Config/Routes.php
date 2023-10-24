@@ -26,19 +26,14 @@ $routes->get('/welcome_message', 'Auth::dashboard');
 
  
  $routes->get('produtos', 'ProdutoController::index');
- $routes->get('produtos/(:num)', 'ProdutoController::show/$1'); // Rota para visualizar um produto específico
- 
- // Rota para exibir o formulário de criação de produto
+ $routes->get('produtos/(:num)', 'ProdutoController::show/$1'); 
  $routes->get('produtos/create', 'ProdutoController::create');
- // Rota para processar o formulário de criação de produto
  $routes->post('produtos/store', 'ProdutoController::store');
  
- // Rota para exibir o formulário de edição de produto
+
  $routes->get('produtos/edit/(:num)', 'ProdutoController::edit/$1', ['filter' => 'auth']);
- // Rota para processar o formulário de edição de produto
  $routes->post('produtos/update/(:num)', 'ProdutoController::update/$1');
- 
- // Rota para deletar um produto
+
  $routes->get('produtos/delete/(:num)', 'ProdutoController::delete/$1');
  
  
