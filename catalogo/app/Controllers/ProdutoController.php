@@ -42,7 +42,7 @@ class ProdutoController extends BaseController
 
 
     public function create()
-    {   
+    {
         $categoriaModel = new CategoriaModel();
         $data = [
             'categorias' =>  $categoriaModel->findAll()
@@ -52,17 +52,23 @@ class ProdutoController extends BaseController
 
     public function store()
     {
+        if ($this->request->getPost()) {
+            $data = $this->request->getPost();
+            $image = $this->request->getFile('imagem');
 
-        // fazer a validação do formulario
-        if($this->request->getPost()){
-            if($this->produtoService->createProduct($this->request->getPost())){
-                $this->produtoService->insertImage($this->request->getFile('imagem'));
+            if ($this->produtoService->createProduct($data)) {
+                // Primeiro, mova a imagem original
+                $originalName = $this->produtoService->moveImage($image);
+
+                // Agora, renomeie e mova a imagem com um novo nome baseado no timestamp
+                $newName = $this->produtoService->renameImage($originalName);
+                $this->produtoService->moveImage($image, $newName);
             }
-            
         }
 
         return redirect()->to('/produtos');
-    }   
+    }
+
 
 
     public function editProduto($id)
@@ -102,5 +108,4 @@ class ProdutoController extends BaseController
 
         return redirect()->to('/produtos'); // Redirecionar para a lista de produtos
     }
-
 }

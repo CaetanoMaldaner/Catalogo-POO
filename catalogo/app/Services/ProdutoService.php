@@ -28,18 +28,40 @@ class ProdutoService
 
     public function insertImage($image)
     {
-        $validation = service('validation');
-
-        if ($validation->withRequest($image)->run(null, 'produto')) {
-       
+        if ($image !== null) {
             if ($image->isValid() && !$image->hasMoved()) {
-                return $this->saveImage(['imagem' => $image]);
+                return $this->saveImage($image);
             }
+        }
+        return null;
+    }
 
-         
+    public function moveImage($image, $newName = null)
+    {
+        // Certifique-se de configurar o diretório de destino corretamente
+        $diretorioDestino = 'public/imgs';
+
+        if ($image !== null) { // Verifica se $image não é nulo
+            if ($image->isValid() && !$image->hasMoved()) {
+                if ($newName === null) {
+                    $newName = $image->getName();
+                }
+
+                if ($image->move($diretorioDestino, $newName)) {
+                    return $newName;
+                }
+            }
         }
 
-        return view('produto/create', ['errors' => $validation->getErrors()]);
+        return null;
+    }
+
+
+    public function renameImage($originalName)
+    {
+        $extension = pathinfo($originalName, PATHINFO_EXTENSION);
+        $newName = time() . '.' . $extension;
+        return $newName;
     }
 
     private function saveImage($image)
@@ -52,7 +74,7 @@ class ProdutoService
             if (move_uploaded_file($image['imagem']['tmp_name'], $diretorioDestino . $nomeUnico)) {
                 return $nomeUnico;
             } else {
-               return false;
+                return false;
             }
         } else {
             return false;
