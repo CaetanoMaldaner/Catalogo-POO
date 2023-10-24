@@ -52,14 +52,17 @@ class ProdutoController extends BaseController
 
     public function store()
     {
-
         // fazer a validação do formulario
         if($this->request->getPost()){
-            $this->produtoService->createProduct($this->request->getPost());
+            if($this->produtoService->createProduct($this->request->getPost())){
+                $this->produtoService->insertImage($this->request->getFile('imagem'));
+            }
+            
         }
 
-        return redirect()->to('/produtos'); // Redirecionar para a lista de produtos
-    }
+        return redirect()->to('/produtos');
+    }   
+
 
     public function editProduto($id)
     {

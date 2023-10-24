@@ -21,6 +21,9 @@
                 <option value="<?php echo $categoria->id; ?>"><?php echo $categoria->nome; ?></option>
             <?php endforeach; ?>
         </select><br><br>
+        
+        <label for="imagem">Imagem do Produto:</label>
+        <input type="file" name="imagem"><br><br>
 
         <input type="submit" value="Cadastrar Produto">
     </form>
