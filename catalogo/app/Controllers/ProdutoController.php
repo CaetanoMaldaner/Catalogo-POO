@@ -52,7 +52,7 @@ class ProdutoController extends BaseController
 
     public function store()
     {
-
+        
         // fazer a validação do formulario
         if($this->request->getPost()){
             $this->produtoService->createProduct($this->request->getPost());
