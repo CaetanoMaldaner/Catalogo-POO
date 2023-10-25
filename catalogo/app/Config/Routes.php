@@ -19,10 +19,11 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/welcome_message', 'Auth::dashboard');
 
  // Rotas do carrinho
- $routes->get('carrinho', 'Carrinho::index');
- $routes->get('carrinho/add/(:num)', 'Carrinho::addToCarrinho/$1');
- $routes->get('carrinho/remove/(:num)', 'Carrinho::removeFromCarrinho/$1');
- $routes->get('carrinho/clear', 'Carrinho::clearCarrinho');
+ $routes->get('/carrinho', 'Carrinho::index');
+ $routes->get('/carrinho/adicionar/(:num)', 'Carrinho::addToCarrinho/$1');
+ $routes->get('/carrinho/remover/(:num)', 'Carrinho::removeFromCarrinho/$1');
+ $routes->get('/carrinho/limpar', 'Carrinho::clearCarrinho');
+ 
 
  
  $routes->get('produtos', 'ProdutoController::index');
