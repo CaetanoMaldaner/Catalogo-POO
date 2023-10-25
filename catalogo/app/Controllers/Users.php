@@ -26,7 +26,7 @@ class Users extends BaseController
     public function create()
     {
         // Verifique se o formulário foi submetido
-        if ($this->request->getMethod() === 'post') {
+        if ($this->request->getPost()) {
             // Validação dos dados do formulário
             $validationRules = [
                 'email'    => 'required|valid_email',

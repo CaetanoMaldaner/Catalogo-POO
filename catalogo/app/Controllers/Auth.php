@@ -33,11 +33,6 @@ class Auth extends BaseController
         echo view('register');
     }
 
-    public function dashboard()
-    {
-        echo view('teste');
-    }
-
 
     public function authenticate()
     {
