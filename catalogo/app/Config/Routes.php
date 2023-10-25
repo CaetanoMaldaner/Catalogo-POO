@@ -14,9 +14,6 @@ use CodeIgniter\Router\RouteCollection;
  $routes->get('login', 'Auth::login');
  $routes->post('createUser', 'Auth::createUser');
  
- $routes->get('dashboard', 'Home::index', ['filter' => 'auth']);
-
-$routes->get('/welcome_message', 'Auth::dashboard');
 
  // Rotas do carrinho
  $routes->get('carrinho', 'Carrinho::index');
@@ -25,15 +22,13 @@ $routes->get('/welcome_message', 'Auth::dashboard');
  $routes->get('carrinho/clear', 'Carrinho::clearCarrinho');
 
  
+ //rotas produto
  $routes->get('produtos', 'ProdutoController::index');
  $routes->get('produtos/(:num)', 'ProdutoController::show/$1'); 
  $routes->get('produtos/create', 'ProdutoController::create');
  $routes->post('produtos/store', 'ProdutoController::store');
- 
-
  $routes->get('produtos/edit/(:num)', 'ProdutoController::edit/$1', ['filter' => 'auth']);
  $routes->post('produtos/update/(:num)', 'ProdutoController::update/$1');
-
  $routes->get('produtos/delete/(:num)', 'ProdutoController::delete/$1');
  
  

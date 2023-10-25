@@ -63,7 +63,7 @@ class UserModel extends Model
         // Verifique se os campos fornecidos são válidos
         if (!isset($data['email'], $data['password'])) {
             return false;
-        }
+        }   
 
         // Crie um array de dados a serem inseridos no banco de dados
         $userData = [

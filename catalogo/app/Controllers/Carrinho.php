@@ -6,6 +6,10 @@ use App\Controllers\BaseController;
 
 class Carrinho extends BaseController
 {
+
+    //TA TUDO ERRADO!!!!
+
+
     public function index()
     {
         echo "Página do Carrinho de Compras";

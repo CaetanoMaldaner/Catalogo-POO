@@ -25,6 +25,7 @@ class Users extends BaseController
 
     public function create()
     {
+        
         // Verifique se o formulário foi submetido
         if ($this->request->getMethod() === 'post') {
             // Validação dos dados do formulário
@@ -32,7 +33,7 @@ class Users extends BaseController
                 'email'    => 'required|valid_email',
                 'password' => 'required|min_length[6]',
             ];
-
+            
             if ($this->validate($validationRules)) {
                 // Dados do formulário são válidos
                 $user = new User($this->request->getPost());

@@ -33,11 +33,6 @@ class Auth extends BaseController
         echo view('register');
     }
 
-    public function dashboard()
-    {
-        echo view('teste');
-    }
-
 
     public function authenticate()
     {
@@ -65,7 +60,7 @@ class Auth extends BaseController
             if ($userModel->insert($data)) {
 
                 return redirect()->to('/');
-            } else {
+            } else {     
 
                 return redirect()->back()->with('error', 'Erro ao criar usuário');
             }
