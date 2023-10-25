@@ -55,10 +55,11 @@
                 <p><?php echo $produto->descricao; ?></p>
                 <div class="price">R$ <?php echo number_format($produto->preco, 2, ',', '.'); ?></div>
                 <button>Comprar</button>
+                
             </div>
         <?php endforeach; ?>
     </div>
-
+    <button><a href="<?= site_url('carrinho') ?>">Acessar Carrinho de Compras</a></button>
 
 
 </body>
