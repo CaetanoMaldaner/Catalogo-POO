@@ -34,9 +34,13 @@ class ProdutoService
             }
         }
 
+        if (getimagesize($image)) {
+    
+        } else {
+
         return null;
     }
-    
+}
 
     public function moveImage($image, $newName = null)
     {
