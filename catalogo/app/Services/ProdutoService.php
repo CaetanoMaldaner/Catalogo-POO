@@ -16,25 +16,27 @@ class ProdutoService
 
     public function createProduct($data)
     {
-        // logica da imagem
-
+        
         $produto = new Produto($data);
 
-        // Insira os dados no banco de dados
         return $this->produtoModel->insert($produto);
+        //atualizar o metodo de create para adicionar o nome novo da imagem no banco!!!
     }
 
 
 
     public function insertImage($image)
     {
+        
         if ($image !== null) {
             if ($image->isValid() && !$image->hasMoved()) {
                 return $this->saveImage($image);
             }
         }
+
         return null;
     }
+    
 
     public function moveImage($image, $newName = null)
     {
@@ -67,14 +69,15 @@ class ProdutoService
     private function saveImage($image)
     {
         // Lógica para inserção de imagem
-        if ($image['imagem']['error'] === UPLOAD_ERR_OK) {
-            $diretorioDestino = 'public/imgs';
-            $nomeUnico = uniqid() . '.' . pathinfo($image['imagem']['name'], PATHINFO_EXTENSION);
-
-            if (move_uploaded_file($image['imagem']['tmp_name'], $diretorioDestino . $nomeUnico)) {
+        
+        if ($image->getError() === UPLOAD_ERR_OK) {
+            $diretorioDestino = 'imgs';
+            $extension = pathinfo($image->getName(), PATHINFO_EXTENSION);
+                $nomeUnico = time() . '.' . $extension;
+                
+            if ($image->move($diretorioDestino, $nomeUnico)) {
+                // O nome da imagem no diretório de destino será $newName
                 return $nomeUnico;
-            } else {
-                return false;
             }
         } else {
             return false;

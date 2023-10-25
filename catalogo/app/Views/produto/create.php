@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Cadastrar Produto</h1>
-    <form action="<?= base_url('produtos/store') ?>" method="post" >
+    <form action="<?= base_url('produtos/store') ?>" method="post" enctype="multipart/form-data">
         <label for="nome">Nome do Produto:</label>
         <input type="text" name="nome" required><br><br>
 
