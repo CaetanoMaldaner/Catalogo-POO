@@ -61,28 +61,7 @@ class CarrinhoModel extends Model
     return $this->where('quantidade', $carrinhoQuantidade)->findAll();
     }
 
-
-    public function createCarrinho($data)
-    {
-        // Verifique se os campos fornecidos são válidos
-        if (!isset($data['user_id'], $data['produto_id'], $data['quantidade'])) {
-            return false;
-        }
-
-        // Crie um array de dados a serem inseridos no banco de dados
-        $carrinhoData = [
-            'user_id'    => $data['user_id'],
-            'produto_id' => $data['produto_id'],
-            'quantidade' => $data['quantidade'],
-        ];
-
-        // Insira os dados no banco de dados
-        return $this->insert($carrinhoData);
-    }
-
-
-    //Metodos de UPDATE e DELETE retornam true se a alteração for bem sucedida e false caso não seja
-
+//
     public function updateCarrinho($carrinhoId, $data)
     {
         return $this->update($carrinhoId, $data);
