@@ -12,7 +12,7 @@ $routes->get('login', 'Auth::login'); //view('login');
 
 $routes->post('authenticate', 'Auth::authenticate'); //Autenticação do user
 $routes->get('logout', 'Auth::logout'); //Destroi a sessão e desloga
-$routes->get('create', 'Auth::create'); //Cria um usuario
+$routes->post('create', 'Auth::create'); //Cria um usuario
 
 
 // Rotas do carrinho

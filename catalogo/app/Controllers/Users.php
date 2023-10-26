@@ -128,6 +128,34 @@ class Users extends BaseController
         }
     }
 
-    
+    public function createUser($data)
+    {
+        
+        // Verifique se os campos fornecidos são válidos
+        if (!isset($data['email'], $data['password'])) {
+            return false;
+        }
+
+        // Crie um array de dados a serem inseridos no banco de dados
+        $userData = [
+            'email'    => $data['email'],
+            'password' => password_hash($data['password'], PASSWORD_BCRYPT), 
+        ];
+
+        // Insira os dados no banco de dados
+        return $this->insert($userData);
+    }
+
+    // Método para atualizar um usuário por ID
+    public function updateUser($userId, $data)
+    {
+        return $this->update($userId, $data);
+    }
+
+    // Método para deletar um usuário por ID
+    public function deleteUser($userId)
+    {
+        return $this->delete($userId);
+    }
   
 }

@@ -38,9 +38,10 @@ class Auth extends BaseController
     {
         
         $email = $this->request->getPost('email');
-        $senha = $this->request->getPost('senha');
+        $senha = $this->request->getPost('password');
+
         
-        return ($this->userService->authenticate($email, $senha)) ? redirect()->to('/welcome_message') : redirect()->back();
+        return ($this->userService->authenticate($email, $senha)) ? redirect()->to('/') : redirect()->back();
     }
 
 
@@ -59,7 +60,7 @@ class Auth extends BaseController
 
             if ($userModel->insert($data)) {
 
-                return redirect()->to('/');
+                return redirect()->to('login');
             } else {
 
                 return redirect()->back()->with('error', 'Erro ao criar usuário');
@@ -67,7 +68,7 @@ class Auth extends BaseController
         }
 
 
-        return view('auth/create_user_form');
+        return view('login');
     }
 
     public function logout()
