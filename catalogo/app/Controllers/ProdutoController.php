@@ -52,20 +52,28 @@ class ProdutoController extends BaseController
 
     public function store()
     {
+            if ($this->request->getPost()) {
+                $imagem = $this->request->getFile('imagem');
+                $caminho = WRITEPATH . 'uploads'; 
+    
+                if (!is_dir($caminho)) {
+                    mkdir($caminho, 0777, true);
+                }
 
-        //Mudar a logica para a inserção da imagem!!!
-        //primeiro salvar a imagem original, depois alterar o nome com o datastamp e ai salvar a imagem !
-        
-        if($this->request->getPost()){
-            if($this->produtoService->createProduct($this->request->getPost())){
-                $this->produtoService->insertImage($this->request->getFile('imagem'));
+                $nomeImagem = time() . '_' . $imagem->getName();
+                $imagem->move($caminho, $nomeImagem);
 
+                if ($this->produtoService->createProduct($this->request->getPost())) {
+
+                    $novoNomeImagem = time() . '_' . $imagem->getName();
+                    rename($caminho . '/' . $nomeImagem, $caminho . '/' . $novoNomeImagem);
+
+                    $this->produtoService->insertImage($novoNomeImagem);
+                }
             }
-            
-        }
-
-        return redirect()->to('/produtos');
-    }   
+        
+            return redirect()->to('/produtos');
+        }  
 
 
     public function editProduto($id)

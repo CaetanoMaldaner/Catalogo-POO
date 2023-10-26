@@ -11,7 +11,7 @@ class CarrinhoModel extends Model
     protected $table            = 'carrinho';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = 'array';//TEM Q BOTAR COMO OBJETO (EX->Carrinho::class)
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = ['user_id','produto_id','quantidade'];

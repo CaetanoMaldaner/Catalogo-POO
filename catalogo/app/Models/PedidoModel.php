@@ -11,7 +11,7 @@ class PedidoModel extends Model
     protected $table            = 'pedidos';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = 'array';  //TEM Q BOTAR COMO OBJETO (EX->Pedido::class)
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = ['user_id','total','status'];

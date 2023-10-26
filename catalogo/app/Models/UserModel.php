@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use App\Entities\User;
+
 
 class UserModel extends Model
 
@@ -12,7 +14,7 @@ class UserModel extends Model
     protected $table            = 'users';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = User::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = ['email', 'password', 'created_at'];
@@ -52,10 +54,10 @@ class UserModel extends Model
     // Método para buscar um usuário por email
     public function getUserByEmail($email)
     {
-        
         return $this->where('email', $email)->first();
     }
 
+<<<<<<< HEAD
     //Metodos de UPDATE e DELETE retornam true se a alteração for bem sucedida e false caso não seja
 
     public function createUser($data)
@@ -88,4 +90,6 @@ class UserModel extends Model
     }
 
 
+=======
+>>>>>>> 2ce5089e35335f15da69ac0210cde32a07bdcb45
 }
