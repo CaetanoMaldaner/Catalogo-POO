@@ -42,7 +42,7 @@ class ProdutoController extends BaseController
 
 
     public function create()
-    {   
+    {
         $categoriaModel = new CategoriaModel();
         $data = [
             'categorias' =>  $categoriaModel->findAll()
@@ -52,10 +52,14 @@ class ProdutoController extends BaseController
 
     public function store()
     {
-            if ($this->request->getPost()) {
-                $imagem = $this->request->getFile('imagem');
-                $caminho = WRITEPATH . 'uploads'; 
-    
+        if ($this->request->getPost()) {
+            $data = $this->request->getPost();
+            $imagem = $this->request->getFile('imagem');
+
+            // Validação de imagem e salvamento
+            if ($imagem->isValid() && !$imagem->hasMoved()) {
+                $caminho = FCPATH . '/imgs';
+
                 if (!is_dir($caminho)) {
                     mkdir($caminho, 0777, true);
                 }
@@ -63,17 +67,21 @@ class ProdutoController extends BaseController
                 $nomeImagem = time() . '_' . $imagem->getName();
                 $imagem->move($caminho, $nomeImagem);
 
-                if ($this->produtoService->createProduct($this->request->getPost())) {
+                $data['imagem'] = $nomeImagem;
 
-                    $novoNomeImagem = time() . '_' . $imagem->getName();
-                    rename($caminho . '/' . $nomeImagem, $caminho . '/' . $novoNomeImagem);
+                // Agora, você também precisa incluir a categoria_id selecionada no $data.
+                $data['categoria_id'] = $this->request->getPost('categoria_id');
 
-                    $this->produtoService->insertImage($novoNomeImagem);
-                }
+                // Chame createProduct com ambos os argumentos
+                $this->produtoService->createProduct($data, $nomeImagem);
+            } else {
+                // Lida com erros de imagem aqui, se necessário.
             }
-        
-            return redirect()->to('/produtos');
-        }  
+        }
+
+        return redirect()->to('/produtos');
+    }
+
 
 
     public function editProduto($id)
@@ -106,12 +114,11 @@ class ProdutoController extends BaseController
         return redirect()->to('/produtos'); // Redirecionar para a lista de produtos
     }
 
-    public function deleteProduto($id)
+    public function delete($id)
     {
         $produtoModel = new ProdutoModel();
-        $produtoModel->deleteProduct($id);
+        $produtoModel->delete($id);
 
-        return redirect()->to('/produtos'); // Redirecionar para a lista de produtos
+        return redirect()->to('/produtos');
     }
-
 }

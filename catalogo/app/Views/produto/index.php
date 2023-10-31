@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Minha Loja Online</title>
     <style>
@@ -45,17 +46,23 @@
         }
     </style>
 </head>
+
 <body>
-    <h1>Produtos em Destaque</h1>
+    <h1>Produtos</h1>
     <div class="product-container">
         <?php foreach ($produtos as $produto) : ?>
             <div class="product">
                 <img src="<?php echo $produto->imagem_url; ?>" alt="<?php echo $produto->nome; ?>">
                 <h2><?php echo $produto->nome; ?></h2>
                 <p><?php echo $produto->descricao; ?></p>
+
                 <div class="price">R$ <?php echo number_format($produto->preco, 2, ',', '.'); ?></div>
                 <button>Comprar</button>
-                
+                <form method="get" action="<?= site_url('produtos/delete/' . $produto->id) ?>">
+                    <button type="submit">Excluir Produto</button>
+                </form>
+
+
             </div>
         <?php endforeach; ?>
     </div>
@@ -63,4 +70,5 @@
 
 
 </body>
-</html> 
+
+</html>

@@ -13,12 +13,12 @@ class ProdutoModel extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = Produto::class;
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nome','descricao','preco','imagem','categoria_id'];
+    protected $allowedFields    = ['nome', 'descricao', 'preco', 'imagem', 'categoria_id'];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
@@ -59,20 +59,17 @@ class ProdutoModel extends Model
     // Método para buscar um produto por categoria
     public function getProdutoByCategoria($produtoCategoria)
     {
-    return $this->where('categoria', $produtoCategoria)->findAll();
+        return $this->where('categoria', $produtoCategoria)->findAll();
     }
-
-
-
 
     public function updateProduto($produtoId, $data)
     {
         return $this->update($produtoId, $data);
     }
 
+
     public function deleteProduto($produtoId)
     {
         return $this->delete($produtoId);
     }
-
 }
