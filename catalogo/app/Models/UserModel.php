@@ -57,4 +57,13 @@ class UserModel extends Model
         return $this->where('email', $email)->first();
     }
 
+    public function deleteUser($userId)
+
+    {
+    $userModel = new UserModel();
+    return $userModel->delete($userId);
+
+    }
+
+
 }

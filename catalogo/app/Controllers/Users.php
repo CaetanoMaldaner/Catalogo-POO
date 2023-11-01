@@ -114,19 +114,14 @@ class Users extends BaseController
 
     public function delete($id)
     {
-        $userModel = new UserModel();
-
-        $user = $userModel->find($id);
-
-        if ($user) {
-
-            $userModel->delete($id);
-
-            return redirect()->to('/sucesso');
+        if($this->userService->deleteUser($id)){
+            return redirect()->to('/login');
         } else {
-            return redirect()->to('/erro');
+            return redirect()->back();
         }
     }
+    
+
 
     public function createUser($data)
     {

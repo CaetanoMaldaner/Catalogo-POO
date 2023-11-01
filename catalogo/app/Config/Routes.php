@@ -9,6 +9,11 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Auth::index'); //view('welcome_message');
 $routes->get('register', 'Auth::register'); //view('register');
 $routes->get('login', 'Auth::login'); //view('login');
+$routes->get('delete', 'Users::delete');
+$routes->match(['get', 'post'], '/delete/(:num)', 'Users::delete/$1');
+
+
+
 
 $routes->post('authenticate', 'Auth::authenticate'); //Autenticação do user
 $routes->get('logout', 'Auth::logout'); //Destroi a sessão e desloga
