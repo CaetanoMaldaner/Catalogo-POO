@@ -28,5 +28,8 @@ use CodeIgniter\Router\RouteCollection;
 
 
 
+//Rotas Carrinho
+ $routes->post('carrinho/add/(:num)', 'Carrinho::addToCarrinho/$1');
+
  
  
