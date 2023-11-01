@@ -15,7 +15,6 @@ use CodeIgniter\Router\RouteCollection;
  $routes->post('createUser', 'Auth::createUser');
  
 
-
  
  //rotas produto
  $routes->get('produtos', 'ProdutoController::index');
@@ -27,6 +26,9 @@ use CodeIgniter\Router\RouteCollection;
  $routes->get('produtos/delete/(:num)', 'ProdutoController::delete/$1');
 
 
+
+//Rotas Carrinho
+ $routes->post('carrinho/add/(:num)', 'Carrinho::addToCarrinho/$1');
 
  
  
