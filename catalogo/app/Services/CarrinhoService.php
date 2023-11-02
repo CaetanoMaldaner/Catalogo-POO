@@ -7,7 +7,7 @@ use App\Models\CarrinhoModel;
 class CarrinhoService
 {
     protected $carrinhoModel;
-
+    
     public function __construct()
     {
         $this->carrinhoModel = new CarrinhoModel();

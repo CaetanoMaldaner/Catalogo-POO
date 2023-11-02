@@ -10,7 +10,7 @@
     </div>
     <div class="form-group">
         <label>Senha</label>
-        <input type="password" name="senha" class="form-control" required>
+        <input type="password" name="password" class="form-control" required>
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
