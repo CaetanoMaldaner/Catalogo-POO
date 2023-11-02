@@ -20,7 +20,7 @@ use CodeIgniter\Router\RouteCollection;
  //rotas produto
  $routes->get('produtos', 'ProdutoController::index');
  $routes->get('produtos/(:num)', 'ProdutoController::show/$1'); 
- $routes->get('produtos/create', 'ProdutoController::create');
+ $routes->get('produtos/create', 'ProdutoController::create', ['filter' => 'AdmFilter']);
  $routes->post('produtos/store', 'ProdutoController::store');
  $routes->get('produtos/edit/(:num)', 'ProdutoController::edit/$1', ['filter' => 'auth']);
  $routes->post('produtos/update/(:num)', 'ProdutoController::update/$1');

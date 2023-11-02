@@ -18,11 +18,17 @@ class UserService
         
         // Buscar o usuário pelo email
         $user = $this->userModel->getUserByEmail($email);
+
+        $variavelDeSessao = [
+            'id' => $user->id,
+            'adm' => $user->adm,
+            'email' => $email,
+        ];
+ 
+        session()->set('variavelDeSessao', $variavelDeSessao);
     
         // Verificar se a senha fornecida corresponde à senha no banco de dados
         if($user && password_verify($senha, $user->password)){
-            
-            session()->set('user_id', $user->id);
             return true;
         } else {
             // Usuário não encontrado ou senha incorreta

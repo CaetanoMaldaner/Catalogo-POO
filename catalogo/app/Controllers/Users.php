@@ -134,7 +134,7 @@ class Users extends BaseController
         // Crie um array de dados a serem inseridos no banco de dados
         $userData = [
             'email'    => $data['email'],
-            'password' => password_hash($data['password'], PASSWORD_BCRYPT), 
+            'password' => password_hash($data['password'], PASSWORD_BCRYPT),
         ];
 
         // Insira os dados no banco de dados
@@ -152,5 +152,5 @@ class Users extends BaseController
     {
         return $this->delete($userId);
     }
-  
+    
 }
