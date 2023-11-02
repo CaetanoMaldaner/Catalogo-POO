@@ -20,7 +20,7 @@ class Auth extends BaseController
 
     public function index()
     {
-        echo view('welcome_message');
+        echo view('produtos');
     }
 
     public function login()

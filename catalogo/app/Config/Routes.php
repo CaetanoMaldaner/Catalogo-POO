@@ -6,6 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
+
  $routes->get('/', 'Auth::index');
  $routes->post('authenticate', 'Auth::authenticate');
  $routes->get('logout', 'Auth::logout');
@@ -28,8 +29,7 @@ use CodeIgniter\Router\RouteCollection;
 
 
 
-//Rotas Carrinho
- $routes->post('carrinho/add/(:num)', 'Carrinho::addToCarrinho/$1');
 
- 
- 
+//Rotas Carrinho
+$routes->post('carrinho/add/(:num)', 'Carrinho::addToCarrinho/$1');
+$routes->get('carrinho', 'Carrinho::viewCarrinho');
