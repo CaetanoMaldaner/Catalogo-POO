@@ -42,6 +42,7 @@ class Auth extends BaseController
 
         
         return ($this->userService->authenticate($email, $senha)) ? redirect()->to('/') : redirect()->back();
+        // return ($this->userService->authenticate($email, $senha));
     }
 
 
