@@ -3,6 +3,7 @@
 
 <head>
     <title>Minha Loja Online</title>
+    <link rel="stylesheet" href="<?= base_url('css/styles.css') ?>">
     <style>
         /* Estilos para o container dos produtos */
         .product-container {
