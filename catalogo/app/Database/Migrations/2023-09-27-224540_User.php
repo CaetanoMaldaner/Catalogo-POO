@@ -23,6 +23,10 @@ class User extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '255',
             ],
+            'adm' => [
+                'type' => 'BOOLEAN',
+                'default' => false,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true, 
