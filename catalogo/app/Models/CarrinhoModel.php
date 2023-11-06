@@ -11,13 +11,13 @@ class CarrinhoModel extends Model
     protected $table            = 'carrinho';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';//TEM Q BOTAR COMO OBJETO (EX->Carrinho::class)
-    protected $useSoftDeletes   = false;
+    protected $returnType       = Carrinho::class;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = ['user_id','produto_id','quantidade'];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

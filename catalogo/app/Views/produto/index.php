@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Minha Loja Online</title>
+    <link rel="stylesheet" href="<?= base_url('css/styles.css') ?>">
     <style>
         /* Estilos para o container dos produtos */
         .product-container {
@@ -45,22 +47,38 @@
         }
     </style>
 </head>
+
 <body>
-    <h1>Produtos em Destaque</h1>
+    <h1>Produtos</h1>
     <div class="product-container">
         <?php foreach ($produtos as $produto) : ?>
             <div class="product">
                 <img src="<?php echo $produto->imagem_url; ?>" alt="<?php echo $produto->nome; ?>">
                 <h2><?php echo $produto->nome; ?></h2>
                 <p><?php echo $produto->descricao; ?></p>
+
                 <div class="price">R$ <?php echo number_format($produto->preco, 2, ',', '.'); ?></div>
-                <button>Comprar</button>
-                
+                <form method="post" action="<?= site_url('carrinho/add/' . $produto->id) ?>">
+                    <button type="submit">Comprar</button>
+                </form>
+                <form method="get" action="<?= site_url('produtos/delete/' . $produto->id) ?>">
+                <button type="submit">Excluir Produto</button>
+            </form>
             </div>
-        <?php endforeach; ?>
     </div>
-    <button><a href="<?= site_url('carrinho') ?>">Acessar Carrinho de Compras</a></button>
+<?php endforeach; ?>
+</div>
+<button>
+    <a href="<?= site_url('carrinho') ?>">
+        Acessar Carrinho de Compras (
+        <?php
+        $carrinho = session('carrinho');
+        echo is_array($carrinho) ? count($carrinho) : 0;
+        ?> itens)
+    </a>
+</button>
 
 
 </body>
-</html> 
+
+</html>

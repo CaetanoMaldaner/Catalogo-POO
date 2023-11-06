@@ -15,12 +15,12 @@ class UserModel extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = User::class;
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = ['email', 'password', 'created_at'];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
@@ -57,13 +57,37 @@ class UserModel extends Model
         return $this->where('email', $email)->first();
     }
 
-    public function deleteUser($userId)
 
+    //Metodos de UPDATE e DELETE retornam true se a alteração for bem sucedida e false caso não seja
+
+    public function createUser($data)
     {
-    $userModel = new UserModel();
-    return $userModel->delete($userId);
+        // Verifique se os campos fornecidos são válidos
+        if (!isset($data['email'], $data['password'])) {
+            return false;
+        }   
 
+        // Crie um array de dados a serem inseridos no banco de dados
+        $userData = [
+            'email'    => $data['email'],
+            'password' => password_hash($data['password'], PASSWORD_BCRYPT), 
+        ];
+
+        // Insira os dados no banco de dados
+        return $this->insert($userData);
     }
 
+    // Método para atualizar um usuário por ID
+    public function updateUser($userId, $data)
+    {
+        return $this->update($userId, $data);
+    }
+  
+    public function deleteUser($userId){
+  
+      $userModel = new UserModel();
+      return $userModel->delete($userId);
+   
+}
 
 }

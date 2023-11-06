@@ -20,7 +20,7 @@ class Auth extends BaseController
 
     public function index()
     {
-        echo view('welcome_message');
+        echo view('login');
     }
 
     public function login()
@@ -42,6 +42,7 @@ class Auth extends BaseController
 
         
         return ($this->userService->authenticate($email, $senha)) ? redirect()->to('/') : redirect()->back();
+        // return ($this->userService->authenticate($email, $senha));
     }
 
 
@@ -60,7 +61,7 @@ class Auth extends BaseController
 
             if ($userModel->insert($data)) {
 
-                return redirect()->to('login');
+                return redirect()->to('/');
             } else {
 
                 return redirect()->back()->with('error', 'Erro ao criar usuário');

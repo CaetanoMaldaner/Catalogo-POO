@@ -25,6 +25,7 @@ class Users extends BaseController
 
     public function create()
     {
+        
         // Verifique se o formulário foi submetido
         if ($this->request->getPost()) {
             // Validação dos dados do formulário
@@ -32,7 +33,7 @@ class Users extends BaseController
                 'email'    => 'required|valid_email',
                 'password' => 'required|min_length[6]',
             ];
-
+            
             if ($this->validate($validationRules)) {
                 // Dados do formulário são válidos
                 $user = new User($this->request->getPost());
@@ -114,13 +115,13 @@ class Users extends BaseController
 
     public function delete($id)
     {
+
         if($this->userService->deleteUser($id)){
             return redirect()->to('/login');
         } else {
             return redirect()->back();
-        }
+      }
     }
-    
 
 
     public function createUser($data)
@@ -134,7 +135,7 @@ class Users extends BaseController
         // Crie um array de dados a serem inseridos no banco de dados
         $userData = [
             'email'    => $data['email'],
-            'password' => password_hash($data['password'], PASSWORD_BCRYPT), 
+            'password' => password_hash($data['password'], PASSWORD_BCRYPT),
         ];
 
         // Insira os dados no banco de dados
@@ -152,5 +153,5 @@ class Users extends BaseController
     {
         return $this->delete($userId);
     }
-  
+    
 }
