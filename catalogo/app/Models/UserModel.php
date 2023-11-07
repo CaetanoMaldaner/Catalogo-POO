@@ -57,6 +57,7 @@ class UserModel extends Model
         return $this->where('email', $email)->first();
     }
 
+
     //Metodos de UPDATE e DELETE retornam true se a alteração for bem sucedida e false caso não seja
 
     public function createUser($data)
@@ -81,12 +82,12 @@ class UserModel extends Model
     {
         return $this->update($userId, $data);
     }
-
-    // Método para deletar um usuário por ID
-    public function deleteUser($userId)
-    {
-        return $this->delete($userId);
-    }
-
+  
+    public function deleteUser($userId){
+  
+      $userModel = new UserModel();
+      return $userModel->delete($userId);
+   
+}
 
 }

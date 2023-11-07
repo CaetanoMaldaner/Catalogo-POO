@@ -108,12 +108,15 @@ class Users extends BaseController
 
     public function delete($id)
     {
+
         if ($this->userService->deleteUser($id)) {
             redirect()->to('/login');
+
         } else {
-            redirect()->back();
-        }
+            return redirect()->back();
+      }
     }
+
 
     public function createUser($data)
     {
