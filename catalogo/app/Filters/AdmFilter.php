@@ -26,7 +26,7 @@ class AdmFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $dados = session()->get('variavelDeSessao');
-        if($dados['adm'] = true){
+        if($dados['adm'] = false){
             session()->setFlashdata('error', 'Você nã pode acessar essa página! vadio');
             return redirect()->back();
         }

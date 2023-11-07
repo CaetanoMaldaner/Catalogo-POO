@@ -1,6 +1,6 @@
 /* Estilo para o body (fundo roxo) */
 body {
-    background-color: #6f42c1; /* Cor roxa de fundo */
+    background-color: #6c5499; /* Cor roxa de fundo */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@ body {
 
 /* Estilo para o formulário */
 .form-container {
-    background-color: #fff; /* Fundo branco para o formulário */
+    background-color: #322383; /* Fundo branco para o formulário */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
@@ -35,7 +35,7 @@ body {
     display: inline-block;
     padding: 10px 20px;
     margin: 0 10px;
-    background-color: #6f42c1;
+    background-color: #322383;
     color: #fff;
     border: none;
     border-radius: 4px;
