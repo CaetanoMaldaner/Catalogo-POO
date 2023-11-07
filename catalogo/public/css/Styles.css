@@ -1,6 +1,7 @@
 /* Estilo para o body (fundo roxo) */
 body {
-    background-color: #6f42c1; /* Cor roxa de fundo */
+    background-color: #6f42c1;
+    /* Cor roxa de fundo */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -12,22 +13,37 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Centraliza verticalmente na tela inteira */
+    height: 100vh;
+    /* Centraliza verticalmente na tela inteira */
 }
 
 /* Estilo para o formulário */
 .form-container {
-    background-color: #fff; /* Fundo branco para o formulário */
+    background-color: #fff;
+    /* Fundo branco para o formulário */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
     text-align: center;
 }
 
 /* Estilo para o cabeçalho (botões) */
 .header {
-    text-align: center;
-    margin-bottom: 20px;
+    position: fixed;
+    /* Torna o cabeçalho fixo no topo */
+    top: 0;
+    width: 100%;
+    /* Cobrir toda a largura */
+    background-color: #fff;
+    /* Fundo branco */
+    padding: 10px 20px;
+    /* Padding para espaçamento interno */
+    display: flex;
+    justify-content: flex-end;
+    /* Alinhar os botões à direita */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
 }
 
 /* Estilo para os botões */
@@ -43,5 +59,6 @@ body {
 }
 
 .button:hover {
-    background-color: #512da8; /* Cor mais escura quando passa o mouse */
+    background-color: #512da8;
+    /* Cor mais escura quando passa o mouse */
 }

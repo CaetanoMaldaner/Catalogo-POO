@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Carrinho de Compras</title>
     <style>
@@ -61,37 +62,48 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Carrinho de Compras</h1>
-    <div class="cart-summary">
-        <h2>Resumo do Carrinho</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th>Preço unitário</th>
-                    <th>Quantidade</th>
-                    <th>Subtotal</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $totalCarrinho = 0; ?>
-                <?php foreach ($carrinho as $produto) : ?>
+
+    <?php if (isset($carrinho) && !empty($carrinho)) : ?>
+        <div class="cart-summary">
+            <h2>Resumo do Carrinho</h2>
+            <table>
+                <thead>
                     <tr>
-                        <td><?= $produto['produto_id']; ?></td> <!-- Alterado para produto_id -->
-                        <td>R$ <?= number_format($produto['preco'], 2, ',', '.'); ?></td>
-                        <td><?= $produto['quantidade']; ?></td>
-                        <?php
-                        $subtotal = $produto['preco'] * $produto['quantidade'];
-                        $totalCarrinho += $subtotal;
-                        ?>
-                        <td>R$ <?= number_format($subtotal, 2, ',', '.'); ?></td>
+                        <th>Produto</th>
+                        <th>Preço unitário</th>
+                        <th>Quantidade</th>
+                        <th>Subtotal</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        <p>Total: R$ <?= number_format($totalCarrinho, 2, ',', '.'); ?></p>
-        <button><a href="<?= site_url('produtos') ?>">Continuar Comprando</a></button>
-    </div>
+                </thead>
+                <tbody>
+                    <?php $totalCarrinho = 0; ?>
+                    <?php foreach ($carrinho as $produto) : ?>
+                        <tr>
+                            <td><?= $produto['produto_id']; ?></td> <!-- Alterado para produto_id -->
+                            <td>R$ <?= number_format($produto['preco'], 2, ',', '.'); ?></td>
+                            <td><?= $produto['quantidade']; ?></td>
+                            <?php
+                            $subtotal = $produto['preco'] * $produto['quantidade'];
+                            $totalCarrinho += $subtotal;
+                            ?>
+                            <td>R$ <?= number_format($subtotal, 2, ',', '.'); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <p>Total: R$ <?= number_format($totalCarrinho, 2, ',', '.'); ?></p>
+            <button><a href="<?= site_url('produtos') ?>">Continuar Comprando</a></button>
+            <form method="post" action="<?= site_url('carrinho/limpar') ?>">
+                <button type="submit">Limpar Carrinho</button>
+            </form>
+        </div>
+    <?php else : ?>
+        <p>Seu carrinho está vazio.</p>
+        <button><a href="<?= site_url('produtos') ?>">Ir às Compras</a></button>
+    <?php endif; ?>
 </body>
+
 </html>

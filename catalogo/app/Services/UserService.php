@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use CodeIgniter\Config\Factories;
@@ -15,26 +16,31 @@ class UserService
 
     public function authenticate($email, $senha)
     {
-        
         // Buscar o usuário pelo email
         $user = $this->userModel->getUserByEmail($email);
 
-        $variavelDeSessao = [
-            'id' => $user->id,
-            'adm' => $user->adm,
-            'email' => $email,
-        ];
- 
-        session()->set('variavelDeSessao', $variavelDeSessao);
-    
-        // Verificar se a senha fornecida corresponde à senha no banco de dados
-        if($user && password_verify($senha, $user->password)){
+        // Verificar se o usuário foi encontrado e se a senha corresponde
+        if ($user && password_verify($senha, $user->password)) {
+            // Recupere o valor do campo 'adm' diretamente do banco de dados
+            $isAdmin = $user->adm;
+
+            // Se o usuário for autenticado com sucesso, crie a sessão
+            $sessionData = [
+                'id'    => $user->id,
+                'email' => $user->email,
+                'isAdmin' => $isAdmin, // Adicione um campo 'isAdmin' com base no valor do campo 'adm' no banco de dados
+            ];
+
+            // Armazene os dados na sessão
+            session()->set($sessionData);
+
             return true;
         } else {
             // Usuário não encontrado ou senha incorreta
             return false;
         }
     }
+
 
 
     // Método para criar um novo usuário
@@ -67,5 +73,3 @@ class UserService
         return $this->userModel->getUserByEmail($email);
     }
 }
-
-?>
