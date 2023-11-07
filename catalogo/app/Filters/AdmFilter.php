@@ -25,11 +25,13 @@ class AdmFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
+
         $isAdmin = session()->get('isAdmin');
 
         if (!$isAdmin) {
             session()->setFlashdata('error', 'Você não pode acessar essa página!');
             return redirect()->to('/');
+
         }
     }
 
