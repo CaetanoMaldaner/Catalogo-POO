@@ -7,9 +7,9 @@
 <body>
     <div class="container">
         <div class="header">
-            <a href="/register" class="button">REGISTER</a>
-            <a href="/login" class="button">LOGIN</a>
-            <a href="/produtos" class="button">CATALOGO</a>
+                <a href="/register" class="button">REGISTER</a>
+                <a href="/login" class="button">LOGIN</a>
+                <a href="/produtos" class="button">CATALOGO</a>
         </div>
 
         

@@ -10,6 +10,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+            
         }
 
         /* Estilos para cada produto */
@@ -50,33 +51,41 @@
 
 <body>
     <h1>Produtos</h1>
-    <div class="product-container">
-        <?php foreach ($produtos as $produto) : ?>
-            <div class="product">
-                <img src="<?php echo $produto->imagem_url; ?>" alt="<?php echo $produto->nome; ?>">
-                <h2><?php echo $produto->nome; ?></h2>
-                <p><?php echo $produto->descricao; ?></p>
 
-                <div class="price">R$ <?php echo number_format($produto->preco, 2, ',', '.'); ?></div>
-                <form method="post" action="<?= site_url('carrinho/add/' . $produto->id) ?>">
-                    <button type="submit">Comprar</button>
-                </form>
-                <form method="get" action="<?= site_url('produtos/delete/' . $produto->id) ?>">
-                <button type="submit">Excluir Produto</button>
-            </form>
-            </div>
+    
+        <div class="header">
+            <a href="/register" class="button">REGISTER</a>
+            <a href="/login" class="button">LOGIN</a>
+            <a href="/produtos" class="button">CATALOGO</a>
+        </div>
+
+        <div class="product-container">
+            <?php foreach ($produtos as $produto) : ?>
+                <div class="product">
+                    <img src="<?php echo $produto->imagem_url; ?>" alt="<?php echo $produto->nome; ?>">
+                    <h2><?php echo $produto->nome; ?></h2>
+                    <p><?php echo $produto->descricao; ?></p>
+
+                    <div class="price">R$ <?php echo number_format($produto->preco, 2, ',', '.'); ?></div>
+                    <form method="post" action="<?= site_url('carrinho/add/' . $produto->id) ?>">
+                        <button type="submit">Comprar</button>
+                    </form>
+                    <form method="get" action="<?= site_url('produtos/delete/' . $produto->id) ?>">
+                        <button type="submit">Excluir Produto</button>
+                    </form>
+                </div>
+
+    <?php endforeach; ?>
     </div>
-<?php endforeach; ?>
-</div>
-<button>
-    <a href="<?= site_url('carrinho') ?>">
-        Acessar Carrinho de Compras (
-        <?php
-        $carrinho = session('carrinho');
-        echo is_array($carrinho) ? count($carrinho) : 0;
-        ?> itens)
-    </a>
-</button>
+    <button>
+        <a href="<?= site_url('carrinho') ?>">
+            Acessar Carrinho de Compras (
+            <?php
+            $carrinho = session('carrinho');
+            echo is_array($carrinho) ? count($carrinho) : 0;
+            ?> itens)
+        </a>
+    </button>
 
 
 </body>

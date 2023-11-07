@@ -20,7 +20,7 @@ class Auth extends BaseController
 
     public function index()
     {
-        echo view('login');
+        echo view('produtos');
     }
 
     public function login()
@@ -36,15 +36,15 @@ class Auth extends BaseController
 
     public function authenticate()
     {
-        
         $email = $this->request->getPost('email');
         $senha = $this->request->getPost('password');
 
-        
-        return ($this->userService->authenticate($email, $senha)) ? redirect()->to('/') : redirect()->back();
-        // return ($this->userService->authenticate($email, $senha));
+        if ($this->userService->authenticate($email, $senha)) {
+            return redirect()->to('/produtos');
+        } else {
+            return redirect()->to('/login');
+        }
     }
-
 
     public function create()
     {

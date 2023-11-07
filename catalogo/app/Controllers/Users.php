@@ -52,13 +52,6 @@ class Users extends BaseController
         return view('user/create');
     }
     
-
-    public function store()
-    {
-
-    }
-
-    
     public function edit($id)
     {
         $userModel = new UserModel();
@@ -115,7 +108,6 @@ class Users extends BaseController
 
     public function delete($id)
     {
-
         if ($this->userService->deleteUser($id)) {
             redirect()->to('/login');
         } else {
