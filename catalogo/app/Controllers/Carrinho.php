@@ -40,7 +40,7 @@ class Carrinho extends BaseController
 
     public function addToCarrinho($produtoId)
     {
-        
+
         // Verifique se o carrinho do usuário já existe na sessão
         if (!session()->has('carrinho')) {
             // Se não existir, crie um carrinho vazio
@@ -49,7 +49,7 @@ class Carrinho extends BaseController
 
         // Obtenha o carrinho atual da sessão
         $carrinho = session('carrinho');
-        
+
         // Verifique se o produto já existe no carrinho
         if (isset($carrinho[$produtoId])) {
             // Se o produto já estiver no carrinho, aumente a quantidade
@@ -79,11 +79,6 @@ class Carrinho extends BaseController
     }
 
 
-
-
-
-
-
     public function removeFromCarrinho($produtoId)
     {
         $carrinho = session('carrinho');
@@ -96,6 +91,17 @@ class Carrinho extends BaseController
 
         return redirect()->to('/carrinho');
     }
+
+    public function limparCarrinho()
+    {
+        // Limpar o carrinho
+        session()->remove('carrinho');
+
+        // Redirecionar de volta à página do carrinho
+        return redirect()->to('produtos');
+    }
+
+
 
 
     public function clearCarrinho()
