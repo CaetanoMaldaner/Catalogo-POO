@@ -6,19 +6,20 @@
     <link rel="stylesheet" href="<?= base_url('css/styles.css') ?>">
     <style>
         .product-container {
+            width: 80%;
+            /* ou qualquer largura desejada */
             display: flex;
             flex-wrap: wrap;
-
             justify-content: space-between;
-
         }
+
 
         /* Estilos para cada produto */
         .product {
             width: 20%;
             margin: 15px;
             padding: 25px;
-            background-color:  #322383;
+            background-color: #322383;
             text-align: center;
             color: #fff;
         }
@@ -68,42 +69,58 @@
     <h1>Produtos</h1>
 
 
-    
-        <div class="header">
-            <a href="/register" class="button">REGISTER</a>
-            <a href="/login" class="button">LOGIN</a>
-            <a href="/produtos" class="button">CATALOGO</a>
-        </div>
 
-        <div class="product-container">
-            <?php foreach ($produtos as $produto) : ?>
-                <div class="product">
-                    <img src="<?php echo $produto->imagem_url; ?>" alt="<?php echo $produto->nome; ?>">
-                    <h2><?php echo $produto->nome; ?></h2>
-                    <p><?php echo $produto->descricao; ?></p>
+    <div class="header">
+        <a href="/logout" class="button">LOGOUT</a>
 
-                    <div class="price">R$ <?php echo number_format($produto->preco, 2, ',', '.'); ?></div>
-                    <form method="post" action="<?= site_url('carrinho/add/' . $produto->id) ?>">
-                        <button type="submit">Comprar</button>
-                    </form>
+        <button>
+
+            <a href="<?= site_url('carrinho') ?>" class="button">
+                Acessar Carrinho de Compras (
+                <?php
+                $carrinho = session('carrinho');
+                echo is_array($carrinho) ? count($carrinho) : 0;
+                ?> itens)
+
+            </a>
+        </button>
+
+    </div>
+
+    <div class="product-container">
+        <?php foreach ($produtos as $produto) : ?>
+            <div class="product">
+                <img src="<?php echo base_url() . 'imgs/' . $produto->imagem; ?>" alt="<?php echo $produto->nome; ?>">
+                <h2><?php echo $produto->nome; ?></h2>
+                <p><?php echo $produto->descricao; ?></p>
+
+                <div class="price">R$ <?php echo number_format($produto->preco, 2, ',', '.'); ?></div>
+                <form method="post" action="<?= site_url('carrinho/add/' . $produto->id) ?>">
+                    <button type="submit">Comprar</button>
+                </form>
+
+                <?php
+                // Verifica se o usuário logado é um ADM
+                $isAdmin = session()->get('isAdmin');
+                if ($isAdmin) {
+                    // Exibe o botão "Excluir Produto" apenas se o usuário for um ADM
+                ?>
                     <form method="get" action="<?= site_url('produtos/delete/' . $produto->id) ?>">
                         <button type="submit">Excluir Produto</button>
                     </form>
-                </div>
+                    <form method="get" action="<?= site_url('produtos/edit/' . $produto->id) ?>">
+                        <button type="submit">Editar Produto</button>
+                    </form>
+                <?php
+                }
+                ?>
 
-    <?php endforeach; ?>
+
+            </div>
+
+        <?php endforeach; ?>
     </div>
-    <button>
 
-        <a href="<?= site_url('carrinho') ?>">
-            Acessar Carrinho de Compras (
-            <?php
-            $carrinho = session('carrinho');
-            echo is_array($carrinho) ? count($carrinho) : 0;
-            ?> itens)
-
-        </a>
-    </button>
 
 
 

@@ -84,7 +84,7 @@ class ProdutoController extends BaseController
 
 
 
-    public function editProduto($id)
+    public function edit($id)
     {
         $produtoModel = new ProdutoModel();
 
@@ -96,6 +96,7 @@ class ProdutoController extends BaseController
 
         return view('produto/edit', $data);
     }
+
 
     public function updateProduto($id)
     {
