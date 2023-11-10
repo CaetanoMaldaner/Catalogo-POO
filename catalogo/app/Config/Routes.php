@@ -28,6 +28,10 @@ $routes->get('produtos/edit/(:num)', 'ProdutoController::edit/$1', ['filter' => 
 $routes->post('produtos/update/(:num)', 'ProdutoController::update/$1');
 $routes->get('produtos/delete/(:num)', 'ProdutoController::delete/$1');
 
+//CATEGORIA
+$routes->get('categorias/create', 'CategoriaController::create');
+$routes->post('categorias/store', 'CategoriaController::store');
+
 
 
 

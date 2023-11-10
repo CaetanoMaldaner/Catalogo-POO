@@ -85,6 +85,25 @@
             </a>
         </button>
 
+        <?php
+        // Verifica se o usuário logado é um ADM
+        $isAdmin = session()->get('isAdmin');
+        if ($isAdmin) {
+            // Exibe o botão "Excluir Produto" apenas se o usuário for um ADM
+        ?>
+
+            <form method="get" action="<?= site_url('produtos/create') ?>">
+                <button type="submit">Criar Novo Produto</button>
+            </form>
+            <form method="get" action="<?= site_url('categorias/create') ?>">
+                <button type="submit">Criar Nova Categoria</button>
+            </form>
+
+        <?php
+        }
+        ?>
+
+
     </div>
 
     <div class="product-container">
