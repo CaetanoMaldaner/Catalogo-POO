@@ -21,7 +21,7 @@ class Users extends BaseController
     public function index()
     {
         return view('register');
-    }
+    }                                         
 
     public function create()
     {
