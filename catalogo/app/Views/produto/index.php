@@ -74,17 +74,10 @@
         <a href="/logout" class="button">LOGOUT</a>
         <a href="/perfil" class="button">PERFIL</a>
 
-        <button>
 
-            <a href="<?= site_url('carrinho') ?>" class="button">
-                Acessar Carrinho de Compras (
-                <?php
-                $carrinho = session('carrinho');
-                echo is_array($carrinho) ? count($carrinho) : 0;
-                ?> itens)
 
-            </a>
-        </button>
+  <a href="<?= site_url('carrinho') ?>" class="button">Acessar Carrinho de Compras</a>
+     
 
         <?php
         // Verifica se o usuário logado é um ADM
@@ -93,13 +86,13 @@
             // Exibe o botão "Excluir Produto" apenas se o usuário for um ADM
         ?>
 
-            <form method="get" action="<?= site_url('produtos/create') ?>">
-                <button type="submit">Criar Novo Produto</button>
-            </form>
-            <form method="get" action="<?= site_url('categorias/create') ?>">
-                <button type="submit">Criar Nova Categoria</button>
-            </form>
-
+        
+              
+          <a href="<?= site_url('produtos/create') ?>" class="button">Criar novo Produto</a>
+     
+          
+          <a href="<?= site_url('categorias/create') ?>" class="button">Criar novo Produto</a>
+      
         <?php
         }
         ?>
@@ -129,7 +122,7 @@
                         <button type="submit">Excluir Produto</button>
                     </form>
                     
-                    <form method="post" action="<?= site_url('produtos/edit/' . $produto->id) ?>">
+
                         <button type="submit">Editar Produto</button>
                     </form>
 
