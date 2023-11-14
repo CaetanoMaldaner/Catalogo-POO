@@ -87,24 +87,31 @@ class Auth extends BaseController
         echo view('perfil', $data);
     }
 
+
+    // CRIS AJUDA NESSE METODO AQUI PRA DAR UPDATE NA SENHA DO USER
+
     public function updatePerfil()
     {
-       
-        $data = [
-            'email' => $this->request->getPost('email'),
-        ];
 
-        // Se uma nova senha foi fornecida, aplique o hash
+        $userId = session()->get('id');
+        $user = $this->userService->getUserById($userId);
+        $currentPassword = $this->request->getPost('current_password');
         $newPassword = $this->request->getPost('password');
+        $dbPassword = $user->password;
+
+        if (!password_verify($currentPassword, $dbPassword)) {
+            return redirect()->to('/perfil')->with('error', 'Senha atual incorreta.');
+        }
+
         if (!empty($newPassword)) {
             $data['password'] = password_hash($newPassword, PASSWORD_BCRYPT);
         }
 
-       
-        $this->userService->updateUser(session()->get('id'), $data);
+        $this->userService->updateUser($userId, $data);
 
         return redirect()->to('/perfil')->with('success', 'Perfil atualizado com sucesso!');
     }
+
 
 
     public function deletePerfil()

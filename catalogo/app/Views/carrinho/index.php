@@ -96,9 +96,7 @@
             </table>
             <p>Total: R$ <?= number_format($totalCarrinho, 2, ',', '.'); ?></p>
             <button><a href="<?= site_url('produtos') ?>">Continuar Comprando</a></button>
-            <form method="post" action="<?= site_url('carrinho/limpar') ?>">
-                <button type="submit">Limpar Carrinho</button>
-            </form>
+            
             <form method="post" action="<?= site_url('carrinho/limpar') ?>">
                 <button type="submit">Finalizar Compra</button>
             </form>
