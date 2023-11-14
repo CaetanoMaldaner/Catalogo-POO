@@ -41,22 +41,20 @@ class ProdutoModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    //METODOS
 
-    // Método para buscar um produto por ID
     public function getProdutoById($produtoId)
     {
         return $this->find($produtoId);
     }
 
-    // Método para buscar um produto por preço
+
     public function getProdutoByPreco($produtoPreco)
     {
         //'preco' é o campo da tabela q ele vai comparar com o valor inserido em $produtoPreco
         return $this->where('preco', $produtoPreco)->findAll();
     }
 
-    // Método para buscar um produto por categoria
+
     public function getProdutoByCategoria($produtoCategoria)
     {
         return $this->where('categoria', $produtoCategoria)->findAll();

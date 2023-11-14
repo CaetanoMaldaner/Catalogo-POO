@@ -42,47 +42,45 @@ class CategoriaModel extends Model
 
     //METODOS
 
-    
-      
-       public function getCategoriaByNome($categoriaNome)
-       {
-           return $this->find($categoriaNome);
-       }
-       
-       public function getCategoriaById($categoriaId)
-       {
-           return $this->find($categoriaId);
-       }
+
+
+    public function getCategoriaByNome($categoriaNome)
+    {
+        return $this->find($categoriaNome);
+    }
+
+    public function getCategoriaById($categoriaId)
+    {
+        return $this->find($categoriaId);
+    }
 
 
 
-       public function createCategoria($data)
-        {
-        // Verifique se o campo fornecido é válido
+    public function createCategoria($data)
+    {
+
         if (!isset($data['nome'])) {
             return false;
         }
 
-        // Crie um array de dados a serem inseridos no banco de dados
+
         $categoriaData = [
             'nome' => $data['nome'],
         ];
 
-        // Insira os dados no banco de dados
+
         return $this->insert($categoriaData);
     }
 
-       //Metodos de UPDATE e DELETE retornam true se a alteração for bem sucedida e false caso não seja
-   
-       public function updateCategoria($categoriaId, $data)
-       {
-           return $this->update($categoriaId, $data);
-       }
- 
-       public function deleteCategoria($categoriaId)
-       {
-           return $this->delete($categoriaId);
-       } 
 
 
+    public function updateCategoria($categoriaId, $data)
+    {
+        return $this->update($categoriaId, $data);
+    }
+
+    public function deleteCategoria($categoriaId)
+    {
+        return $this->delete($categoriaId);
+    }
 }
