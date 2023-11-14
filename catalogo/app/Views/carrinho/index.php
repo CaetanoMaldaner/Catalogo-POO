@@ -65,7 +65,7 @@
 
 <body>
     <h1>Carrinho de Compras</h1>
-
+    <link rel="stylesheet" href="<?= base_url('css/styles.css') ?>">
     <?php if (isset($carrinho) && !empty($carrinho)) : ?>
         <div class="cart-summary">
             <h2>Resumo do Carrinho</h2>
@@ -104,6 +104,7 @@
         <p>Seu carrinho está vazio.</p>
         <button><a href="<?= site_url('produtos') ?>">Ir às Compras</a></button>
     <?php endif; ?>
+
 </body>
 
 </html>
