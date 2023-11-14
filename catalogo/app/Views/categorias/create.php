@@ -6,7 +6,9 @@
 </head>
 
 <body>
+<link rel="stylesheet" href="<?= base_url('css/styles.css') ?>">
     <h1>Criar Nova Categoria</h1>
+    
     <form action="<?= base_url('categorias/store') ?>" method="post">
         <label for="nome">Nome da Categoria:</label>
         <input type="text" name="nome" required><br><br>
