@@ -33,25 +33,46 @@ class Carrinho extends BaseController
             $carrinho = [];
         }
 
-        $produtoInfo = $this->produtoModel->find($produtoId);
+        // Verificar se o produto já está no carrinho
+        $produtoIndex = $this->findProdutoIndex($carrinho, $produtoId);
 
-        if ($produtoInfo) {
-            $produtoArray = $produtoInfo->toArray();
+        if ($produtoIndex !== false) {
+            // Se o produto já estiver no carrinho, apenas aumente a quantidade
+            $carrinho[$produtoIndex]['quantidade']++;
+        } else {
+            // Se o produto não estiver no carrinho, adicione-o
+            $produtoInfo = $this->produtoModel->find($produtoId);
 
-            $itemCarrinho = [
-                'produto_id' => $produtoId,
-                'nome' => $produtoArray['nome'],
-                'quantidade' => 1,
-                'preco' => $produtoArray['preco'],
-            ];
+            if ($produtoInfo) {
+                $produtoArray = $produtoInfo->toArray();
 
-            $carrinho[] = $itemCarrinho;
+                $itemCarrinho = [
+                    'produto_id' => $produtoId,
+                    'nome' => $produtoArray['nome'],
+                    'quantidade' => 1,
+                    'preco' => $produtoArray['preco'],
+                ];
 
-            // Atualize o carrinho na sessão
-            session()->set('carrinho', $carrinho);
+                $carrinho[] = $itemCarrinho;
+            }
         }
 
+        // Atualize o carrinho na sessão
+        session()->set('carrinho', $carrinho);
+
         return redirect()->to('/produtos');
+    }
+
+    // Adicione este método para encontrar o índice de um produto no carrinho
+    protected function findProdutoIndex($carrinho, $produtoId)
+    {
+        foreach ($carrinho as $index => $item) {
+            if ($item['produto_id'] == $produtoId) {
+                return $index;
+            }
+        }
+
+        return false;
     }
 
     // Adicione este método para calcular o total do carrinho
@@ -69,7 +90,7 @@ class Carrinho extends BaseController
         return $totalCarrinho;
     }
 
-    
+
     public function finalizarCompra()
     {
         $carrinho = session('carrinho');
@@ -93,5 +114,13 @@ class Carrinho extends BaseController
         }
 
         return redirect()->to('/carrinho')->with('error', 'Carrinho vazio. Adicione produtos antes de finalizar a compra.');
+    }
+
+    public function limparCarrinho()
+    {
+        // Limpar o carrinho na sessão
+        session()->remove('carrinho');
+
+        return redirect()->to('/carrinho')->with('success', 'Carrinho limpo com sucesso!');
     }
 }

@@ -58,7 +58,7 @@
             margin: 10px;
             padding: 10px;
             border: 1px solid #ddd;
-            background-color: #fff;
+            background-color: #946ddc;
         }
     </style>
 </head>
@@ -72,7 +72,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Produto</th>
+                        <th>ID do Produto</th>
                         <th>Preço unitário</th>
                         <th>Quantidade</th>
                         <th>Subtotal</th>
@@ -98,6 +98,9 @@
             <button><a href="<?= site_url('produtos') ?>">Continuar Comprando</a></button>
             <form method="post" action="<?= site_url('carrinho/limpar') ?>">
                 <button type="submit">Limpar Carrinho</button>
+            </form>
+            <form method="post" action="<?= site_url('carrinho/limpar') ?>">
+                <button type="submit">Finalizar Compra</button>
             </form>
         </div>
     <?php else : ?>
