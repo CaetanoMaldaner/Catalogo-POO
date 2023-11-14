@@ -18,11 +18,6 @@ class Auth extends BaseController
         $this->userService = Factories::class(UserService::class);
     }
 
-    public function index()
-    {
-        echo view('produtos');
-    }
-
     public function login()
     {
         echo view('login');
@@ -33,6 +28,8 @@ class Auth extends BaseController
         echo view('register');
     }
 
+
+    //Metodo de Autenticação do Usuario
 
     public function authenticate()
     {
@@ -45,6 +42,8 @@ class Auth extends BaseController
             return redirect()->to('/login');
         }
     }
+
+    //Metodo de Criação do Usuario
 
     public function create()
     {
@@ -72,12 +71,49 @@ class Auth extends BaseController
         return view('login');
     }
 
+    //Metodo para Deslogar e Destruir a Sessão do Usuario
+
     public function logout()
     {
         session()->destroy();
         return redirect()->to('/');
     }
 
-  
 
+
+    public function perfil()
+    {
+        $data['user'] = $this->userService->getUserById(session()->get('id'));
+        echo view('perfil', $data);
+    }
+
+    public function updatePerfil()
+    {
+       
+        $data = [
+            'email' => $this->request->getPost('email'),
+        ];
+
+        // Se uma nova senha foi fornecida, aplique o hash
+        $newPassword = $this->request->getPost('password');
+        if (!empty($newPassword)) {
+            $data['password'] = password_hash($newPassword, PASSWORD_BCRYPT);
+        }
+
+       
+        $this->userService->updateUser(session()->get('id'), $data);
+
+        return redirect()->to('/perfil')->with('success', 'Perfil atualizado com sucesso!');
+    }
+
+
+    public function deletePerfil()
+    {
+
+        $this->userService->deleteUser(session()->get('id'));
+
+        $this->logout();
+
+        return redirect()->to('/')->with('success', 'Conta excluída com sucesso!');
+    }
 }

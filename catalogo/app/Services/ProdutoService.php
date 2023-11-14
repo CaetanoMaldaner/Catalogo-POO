@@ -46,38 +46,37 @@ class ProdutoService
 
     public function saveImageFromFile($imagePath)
     {
-        // Check if the image file exists
+
         if (file_exists($imagePath)) {
-            // Determine the destination directory where you want to save the image
+
             $destinationDirectory = FCPATH . '/imgs';
 
 
-            // Generate a unique filename or use the original filename if needed
+
             $filename = uniqid() . '_' . basename($imagePath);
 
-            // Define the full path for the new image file in the destination directory
+
             $destinationPath = $destinationDirectory . $filename;
 
-            // Attempt to move the image file to the destination directory
+
             if (rename($imagePath, $destinationPath)) {
-                // Image was successfully moved, and you can return any relevant information or the path
+
                 return $destinationPath;
             } else {
-                // Failed to move the image, handle the error or return null
+
                 return null;
             }
         }
 
-        // If the image file doesn't exist, return null or handle the error accordingly
+
         return null;
     }
 
     public function moveImage($image, $newName = null)
     {
-        // Certifique-se de configurar o diretório de destino corretamente
         $diretorioDestino = 'public/imgs';
 
-        if ($image !== null) { // Verifica se $image não é nulo
+        if ($image !== null) {
             if ($image->isValid() && !$image->hasMoved()) {
                 if ($newName === null) {
                     $newName = $image->getName();
@@ -110,7 +109,7 @@ class ProdutoService
             $nomeUnico = time() . '.' . $extension;
 
             if ($image->move($diretorioDestino, $nomeUnico)) {
-                // O nome da imagem no diretório de destino será $newName
+
                 return $nomeUnico;
             }
         } else {

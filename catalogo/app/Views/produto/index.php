@@ -72,6 +72,7 @@
 
     <div class="header">
         <a href="/logout" class="button">LOGOUT</a>
+        <a href="/perfil" class="button">PERFIL</a>
 
         <button>
 
@@ -127,9 +128,11 @@
                     <form method="get" action="<?= site_url('produtos/delete/' . $produto->id) ?>">
                         <button type="submit">Excluir Produto</button>
                     </form>
-                    <form method="get" action="<?= site_url('produtos/edit/' . $produto->id) ?>">
+                    
+                    <form method="post" action="<?= site_url('produtos/edit/' . $produto->id) ?>">
                         <button type="submit">Editar Produto</button>
                     </form>
+
                 <?php
                 }
                 ?>

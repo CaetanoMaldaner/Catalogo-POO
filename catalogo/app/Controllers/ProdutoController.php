@@ -88,6 +88,23 @@ class ProdutoController extends BaseController
     {
         $produtoModel = new ProdutoModel();
 
+        // Verifique se a requisição é POST para processar a atualização
+        if ($this->request->getMethod() === 'post') {
+            $data = [
+                'nome'         => $this->request->getPost('nome'),
+                'descricao'    => $this->request->getPost('descricao'),
+                'preco'        => $this->request->getPost('preco'),
+                'categoria_id' => $this->request->getPost('categoria_id'),
+            ];
+
+            // Lógica para processar a atualização do produto
+            $produtoModel->updateProduct($id, $data);
+
+            // Redirecione após a edição    
+            return redirect()->to('/produtos');
+        }
+
+        // Se não for um pedido POST, continue com a lógica original para exibir o formulário de edição
         $data['produto'] = $produtoModel->find($id);
 
         if (empty($data['produto'])) {
@@ -98,19 +115,28 @@ class ProdutoController extends BaseController
     }
 
 
+
     public function updateProduto($id)
     {
         $produtoModel = new ProdutoModel();
 
+        // Obtenha os dados do formulário
         $data = [
             'nome'         => $this->request->getPost('nome'),
             'descricao'    => $this->request->getPost('descricao'),
             'preco'        => $this->request->getPost('preco'),
-            'imagem'       => $this->request->getPost('imagem'),
             'categoria_id' => $this->request->getPost('categoria_id'),
         ];
 
-        $produtoModel->updateProduct($id, $data);
+        // Atualize os dados do produto
+        $produtoModel->updateProduto($id, $data);
+
+        // Lida com a imagem, se fornecida
+        $imagem = $this->request->getFile('imagem');
+        if ($imagem->isValid() && !$imagem->hasMoved()) {
+            $imageName = $this->produtoService->moveImage($imagem, $data['nome']);
+            $produtoModel->updateProdutoImagem($id, $imageName);
+        }
 
         return redirect()->to('/produtos'); // Redirecionar para a lista de produtos
     }
