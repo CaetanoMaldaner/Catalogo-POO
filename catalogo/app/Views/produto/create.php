@@ -6,6 +6,11 @@
 </head>
 
 <body>
+
+
+
+
+<link rel="stylesheet" href="<?= base_url('css/styles.css') ?>">
     <h1>Cadastrar Produto</h1>
     <form action="<?= base_url('produtos/store') ?>" method="post" enctype="multipart/form-data">
         <label for="nome">Nome do Produto:</label>
