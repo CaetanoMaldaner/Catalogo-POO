@@ -76,8 +76,8 @@
 
 
 
-     <a href="<?= site_url('carrinho') ?>" class="button">ACESSAR CARRINHO DE COMPRA</a>
-     
+        <a href="<?= site_url('carrinho') ?>" class="button">ACESSAR CARRINHO DE COMPRA</a>
+
 
         <?php
         // Verifica se o usuário logado é um ADM
@@ -86,13 +86,13 @@
             // Exibe o botão "Excluir Produto" apenas se o usuário for um ADM
         ?>
 
-        
-              
-          <a href="<?= site_url('produtos/create') ?>" class="button">CRIAR NOVO PRODUTO</a>
-     
-          
-          <a href="<?= site_url('categorias/create') ?>" class="button">CRIAR NOVA CATEGORIA</a>
-      
+
+
+            <a href="<?= site_url('produtos/create') ?>" class="button">CRIAR NOVO PRODUTO</a>
+
+
+            <a href="<?= site_url('categorias/create') ?>" class="button">CRIAR NOVA CATEGORIA</a>
+
         <?php
         }
         ?>
@@ -109,7 +109,7 @@
 
                 <div class="price">R$ <?php echo number_format($produto->preco, 2, ',', '.'); ?></div>
                 <form method="post" action="<?= site_url('carrinho/add/' . $produto->id) ?>">
-                    <button  class="button">COMPRAR</button>
+                    <button class="button">COMPRAR</button>
                 </form>
 
                 <?php
@@ -119,9 +119,11 @@
                     // Exibe o botão "Excluir Produto" apenas se o usuário for um ADM
                 ?>
                     <form method="get" action="<?= site_url('produtos/delete/' . $produto->id) ?>">
-                        <button  class="button">EXCLUIR PRODUTO</button>
+                        <button class="button">EXCLUIR PRODUTO</button>
                     </form>
-                        <button class="button">EDITAR PRODUTO</button>
+
+                    <a href="<?= site_url('produtos/edit/' . $produto->id) ?>" class="button">EDITAR PRODUTO</a>
+
                     </form>
 
                 <?php

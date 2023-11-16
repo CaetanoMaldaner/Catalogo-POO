@@ -20,10 +20,16 @@
         <label for="password">Nova Senha:</label>
         <input type="password" name="password"><br><br>
 
-        <input type="submit" value="Atualizar Perfil">
-    </form>
+        <input type="submit" class="button" value="ATUALIZAR PERFIL">
 
-    <a href="<?= base_url('perfil/delete') ?>" onclick="return confirm('Tem certeza que deseja excluir sua conta?')">Excluir Conta</a>
+
+    </form>
+    <br>
+    <a href="/logout" class="button">PAGINA INICIAL</a>
+    <a href="/produtos" class="button">VOLTAR</a>
+    <a href="<?= base_url('perfil/delete') ?>" class="button" onclick="return confirm('Tem certeza que deseja excluir sua conta?')">EXCLUIR CONTA</a>
+
+
 </body>
 
 </html>

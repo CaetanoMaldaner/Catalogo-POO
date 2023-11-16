@@ -87,25 +87,13 @@ class ProdutoController extends BaseController
     public function edit($id)
     {
         $produtoModel = new ProdutoModel();
+        $categoriaModel = new CategoriaModel();
 
-        // Verifique se a requisição é POST para processar a atualização
-        if ($this->request->getMethod() === 'post') {
-            $data = [
-                'nome'         => $this->request->getPost('nome'),
-                'descricao'    => $this->request->getPost('descricao'),
-                'preco'        => $this->request->getPost('preco'),
-                'categoria_id' => $this->request->getPost('categoria_id'),
-            ];
-
-            // Lógica para processar a atualização do produto
-            $produtoModel->updateProduct($id, $data);
-
-            // Redirecione após a edição    
-            return redirect()->to('/produtos');
-        }
-
-        // Se não for um pedido POST, continue com a lógica original para exibir o formulário de edição
+        // Obtém o produto
         $data['produto'] = $produtoModel->find($id);
+
+        // Obtém todas as categorias para preencher o dropdown
+        $data['categorias'] = $categoriaModel->findAll();
 
         if (empty($data['produto'])) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Produto não encontrado.');
@@ -116,7 +104,7 @@ class ProdutoController extends BaseController
 
 
 
-    public function updateProduto($id)
+    public function update($id)
     {
         $produtoModel = new ProdutoModel();
 
@@ -140,6 +128,9 @@ class ProdutoController extends BaseController
 
         return redirect()->to('/produtos'); // Redirecionar para a lista de produtos
     }
+
+
+
 
     public function delete($id)
     {
