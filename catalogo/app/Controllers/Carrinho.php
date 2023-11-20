@@ -4,17 +4,17 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ProdutoModel;
-use App\Models\CarrinhoModel; // Adicione a inclusão do modelo de carrinho
+use App\Models\CarrinhoModel;
 
 class Carrinho extends BaseController
 {
     protected $produtoModel;
-    protected $carrinhoModel; // Adicione a propriedade de modelo de carrinho
+    protected $carrinhoModel;
 
     public function __construct()
     {
         $this->produtoModel = new ProdutoModel();
-        $this->carrinhoModel = new CarrinhoModel(); // Instancie o modelo de carrinho
+        $this->carrinhoModel = new CarrinhoModel();
     }
 
     public function viewCarrinho()
@@ -33,14 +33,11 @@ class Carrinho extends BaseController
             $carrinho = [];
         }
 
-        // Verificar se o produto já está no carrinho
         $produtoIndex = $this->findProdutoIndex($carrinho, $produtoId);
 
         if ($produtoIndex !== false) {
-            // Se o produto já estiver no carrinho, apenas aumente a quantidade
             $carrinho[$produtoIndex]['quantidade']++;
         } else {
-            // Se o produto não estiver no carrinho, adicione-o
             $produtoInfo = $this->produtoModel->find($produtoId);
 
             if ($produtoInfo) {
@@ -57,13 +54,11 @@ class Carrinho extends BaseController
             }
         }
 
-        // Atualize o carrinho na sessão
         session()->set('carrinho', $carrinho);
 
         return redirect()->to('/produtos');
     }
 
-    // Adicione este método para encontrar o índice de um produto no carrinho
     protected function findProdutoIndex($carrinho, $produtoId)
     {
         foreach ($carrinho as $index => $item) {
@@ -75,7 +70,6 @@ class Carrinho extends BaseController
         return false;
     }
 
-    // Adicione este método para calcular o total do carrinho
     protected function calcularTotalCarrinho($carrinho)
     {
         $totalCarrinho = 0;
@@ -90,25 +84,36 @@ class Carrinho extends BaseController
         return $totalCarrinho;
     }
 
-
     public function finalizarCompra()
     {
         $carrinho = session('carrinho');
 
         if (!empty($carrinho)) {
-            // Lógica para salvar as informações do carrinho no banco de dados (use o modelo de carrinho)
+            // Lógica para salvar as informações do carrinho no banco de dados
             foreach ($carrinho as $item) {
                 $data = [
-                    'user_id' => session('id'), // Id do usuário logado
+                    'user_id' => session('id'),
                     'produto_id' => $item['produto_id'],
                     'quantidade' => $item['quantidade'],
                 ];
 
-                $this->carrinhoModel->insert($data);
+                // Verificar se o item já existe no carrinho do usuário no banco de dados
+                $existingCartItem = $this->carrinhoModel->where('user_id', session('id'))
+                    ->where('produto_id', $item['produto_id'])
+                    ->first();
+
+                if ($existingCartItem) {
+                    // Se o item já existe, atualize a quantidade
+                    $data['quantidade'] += $existingCartItem['quantidade'];
+                    $this->carrinhoModel->updateCarrinho($existingCartItem['id'], $data);
+                } else {
+                    // Se o item não existe, insira-o
+                    $this->carrinhoModel->insert($data);
+                }
             }
 
             // Limpar o carrinho após a compra
-            session()->remove('carrinho');
+            $this->limparCarrinho();
 
             return redirect()->to('/carrinho')->with('success', 'Compra realizada com sucesso!');
         }
@@ -116,11 +121,31 @@ class Carrinho extends BaseController
         return redirect()->to('/carrinho')->with('error', 'Carrinho vazio. Adicione produtos antes de finalizar a compra.');
     }
 
+
+
     public function limparCarrinho()
     {
-        // Limpar o carrinho na sessão
         session()->remove('carrinho');
 
         return redirect()->to('/carrinho')->with('success', 'Carrinho limpo com sucesso!');
+    }
+
+
+    public function excluirItem($index)
+    {
+        $carrinho = session()->get('carrinho');
+
+        // Verifique se o índice existe no carrinho
+        if (isset($carrinho[$index])) {
+            // Remova o item do carrinho
+            unset($carrinho[$index]);
+
+            // Atualize a sessão do carrinho
+            session()->set('carrinho', $carrinho);
+
+            return redirect()->to('/carrinho')->with('success', 'Item removido do carrinho com sucesso!');
+        }
+
+        return redirect()->to('/carrinho')->with('error', 'Item não encontrado no carrinho.');
     }
 }

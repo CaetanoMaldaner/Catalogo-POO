@@ -71,12 +71,17 @@
 
 
     <div class="header">
-        <a href="/logout" class="button">LOGOUT</a>
-        <a href="/perfil" class="button">PERFIL</a>
+    <a href="/logout" class="button">
+        <img src="/imgs/Logout.png" alt="LOGOUT">
+    </a>
 
+    <a href="/perfil" class="button">
+        <img src="/imgs/Perfil.png" alt="PERFIL">
+    </a>
 
-
-        <a href="<?= site_url('carrinho') ?>" class="button">ACESSAR CARRINHO DE COMPRA</a>
+    <a href="<?= site_url('carrinho') ?>" class="button">
+        <img src="/imgs/Cart.png" alt="CARRINHO">
+    </a>
 
 
         <?php

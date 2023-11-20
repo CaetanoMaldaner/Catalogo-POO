@@ -22,46 +22,57 @@ body {
 /* Estilo para o formulário */
 .form-container {
 
-    background-color: #322383; /* Fundo branco para o formulário */
+    background-color: #322383;
+    /* Fundo branco para o formulário */
 
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 0px 10px  rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     /* Sombra suave */
     text-align: center;
 }
 
+
 /* Estilo para o cabeçalho (botões) */
 .header {
-    position: fixed;
-    /* Torna o cabeçalho fixo no topo */
+    position: fixed; /* Torna o cabeçalho fixo no topo */
     top: 0;
     width: 100%;
-    /* Cobrir toda a largura */
-    background-color: #4b209b;
-    /* Fundo branco */
+    background-color: #4b209b; /* Cor de fundo desejada */
     padding: 10px 20px;
-    /* Padding para espaçamento interno */
     display: flex;
     justify-content: flex-end;
-    /* Alinhar os botões à direita */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    /* Sombra suave */
+    z-index: 1000; /* Certifica-se de que o cabeçalho esteja acima de outros elementos na página */
 }
 
 /* Estilo para os botões */
 .button {
     display: inline-block;
-    padding: 10px 20px;
     margin: 0 10px;
-    background-color: #845fda56;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
+    background-color: transparent;
+    color: #fff; /* Cor do texto */
     text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 20px;
 }
 
 .button:hover {
     background-color: #a172ee;
-    /* Cor mais escura quando passa o mouse */
+}
+
+/* Restante do seu CSS... */
+
+
+.button img {
+    width: 30px;
+    /* ou o tamanho desejado para as suas imagens */
+    height: 30px;
+    border-radius: 50%;
+    /* borda circular se desejar */
+}
+
+.button:hover img {
+    filter: brightness(1.5);
+    /* aumentar brilho ao passar o mouse */
 }
