@@ -43,3 +43,6 @@ $routes->post('carrinho/add/(:num)', 'Carrinho::addToCarrinho/$1');
 $routes->get('carrinho', 'Carrinho::viewCarrinho');
 $routes->post('carrinho/limpar', 'Carrinho::limparCarrinho');
 $routes->post('carrinho/finalizar-compra', 'Carrinho::finalizarCompra');
+$routes->post('carrinho/excluir/(:num)', 'Carrinho::excluirItem/$1');
+
+
