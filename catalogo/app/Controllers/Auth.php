@@ -44,7 +44,6 @@ class Auth extends BaseController
     }
 
     //Metodo de Criação do Usuario
-
     public function create()
     {
 
@@ -111,7 +110,7 @@ class Auth extends BaseController
         // Atualização do Perfil
         try {
             $this->userService->updateUser($userId, $data);
-            return redirect()->to('/perfil')->with('success', 'Perfil atualizado com sucesso!');
+            return redirect()->to('/login')->with('success', 'Perfil atualizado com sucesso!');
         } catch (\Exception $e) {
             return redirect()->to('/perfil')->with('error', 'Erro ao atualizar o perfil. Tente novamente mais tarde.');
         }

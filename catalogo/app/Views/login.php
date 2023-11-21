@@ -8,7 +8,6 @@
     <div class="container">
         <div class="header">
                 <a href="/register" class="button">REGISTER</a>
-                <a href="/login" class="button">LOGIN</a>
         </div>
 
         
