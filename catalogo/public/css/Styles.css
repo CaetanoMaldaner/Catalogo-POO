@@ -7,6 +7,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+      
 }
 
 /* Estilo para o contêiner principal (centralização) */
@@ -23,7 +24,7 @@ body {
 .form-container {
 
     background-color: #322383; /* Fundo branco para o formulário */
-
+  
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px  rgba(0, 0, 0, 0.1);
@@ -33,6 +34,7 @@ body {
 
 /* Estilo para o cabeçalho (botões) */
 .header {
+    
     position: fixed;
     /* Torna o cabeçalho fixo no topo */
     top: 0;
@@ -47,21 +49,26 @@ body {
     /* Alinhar os botões à direita */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     /* Sombra suave */
+    border-radius: 5px;
 }
 
 /* Estilo para os botões */
 .button {
     display: inline-block;
     padding: 10px 20px;
-    margin: 0 10px;
+    margin:  10px;
     background-color: #845fda56;
     color: #fff;
     border: none;
     border-radius: 20px;
     text-decoration: none;
+ 
+    
 }
 
 .button:hover {
     background-color: #a172ee;
     /* Cor mais escura quando passa o mouse */
+
+   
 }
