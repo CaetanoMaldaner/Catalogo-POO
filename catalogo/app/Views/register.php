@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <a class="button" href="<?= site_url('register') ?>">REGISTER</a>
+           
             <a class="button" href="<?= site_url('login') ?>">LOGIN</a>
         </div>
         <div class="form-container">

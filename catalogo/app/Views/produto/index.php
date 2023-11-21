@@ -11,6 +11,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+            
         }
 
 
@@ -22,12 +23,16 @@
             background-color: #4b209b;
             text-align: center;
             color: #fff;
+            border-radius: 20px;
+       
         }
 
         /* Estilos para a imagem do produto */
         .product img {
             max-width: 100%;
             height: auto;
+            border-radius: 20px;
+           
         }
 
         /* Estilos para o nome do produto */
@@ -48,6 +53,7 @@
             font-size: 16px;
             font-weight: bold;
             color: #fff;
+            
         }
 
         body {
@@ -55,12 +61,15 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            
         }
 
         button {
             margin-top: 30px;
             text-align: center;
             border-radius: 8px;
+            margin: 6;
+            
         }
     </style>
 </head>
@@ -79,9 +88,11 @@
         <img src="/imgs/Perfil.png" alt="PERFIL">
     </a>
 
+
     <a href="<?= site_url('carrinho') ?>" class="button">
         <img src="/imgs/Cart.png" alt="CARRINHO">
     </a>
+
 
 
         <?php
@@ -106,15 +117,20 @@
     </div>
 
     <div class="product-container">
+        
+
         <?php foreach ($produtos as $produto) : ?>
             <div class="product">
                 <img src="<?php echo base_url() . 'imgs/' . $produto->imagem; ?>" alt="<?php echo $produto->nome; ?>">
                 <h2><?php echo $produto->nome; ?></h2>
                 <p><?php echo $produto->descricao; ?></p>
 
+
+            
                 <div class="price">R$ <?php echo number_format($produto->preco, 2, ',', '.'); ?></div>
                 <form method="post" action="<?= site_url('carrinho/add/' . $produto->id) ?>">
                     <button class="button">COMPRAR</button>
+                    
                 </form>
 
                 <?php
