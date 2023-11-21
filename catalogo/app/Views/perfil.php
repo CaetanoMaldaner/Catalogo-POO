@@ -15,7 +15,7 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            color: #fff;
+      
         }
 
         form {
@@ -24,12 +24,12 @@
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: #fff;
         }
 
         input {
-            margin-bottom: 8px;
+            margin-bottom: 15px;
         }
 
         .button {
@@ -40,7 +40,7 @@
             color: #fff;
             background-color: #845fda56;
             border-radius: 5px;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
     </style>
 

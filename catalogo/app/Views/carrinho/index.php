@@ -43,6 +43,7 @@
             font-size: 16px;
             font-weight: bold;
             color: #f60;
+            
         }
 
         /* Estilos para o total do item no carrinho */
