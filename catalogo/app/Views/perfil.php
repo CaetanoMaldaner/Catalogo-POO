@@ -15,8 +15,14 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-      
+            background-color: #6f42c1;
+            background-image: url("/imgs/PerfilBackground.jpg");
+
+            background-repeat: no-repeat;
+            background-size: 120%;
+
         }
+
 
         form {
             text-align: center;
@@ -42,30 +48,49 @@
             border-radius: 5px;
             margin-bottom: 5px;
         }
+
+        .form-container {
+
+
+            background-color: #4b209b;
+            /* Fundo branco para o formulário */
+
+
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            /* Sombra suave */
+            text-align: center;
+        }
     </style>
 
 </head>
 
 <body>
-    <h1>Perfil do Usuário</h1>
-    <form action="<?= base_url('perfil/update') ?>" method="post">
-        <label for="email">Email:</label>
-        <input type="text" name="email" value="<?= $user->email ?>" required><br><br>
+    <div class="form-container">
+        <h1>Perfil do Usuário</h1>
+        <form action="<?= base_url('perfil/update') ?>" method="post">
+            <label for="email">Email:</label>
+            <input type="text" name="email" value="<?= $user->email ?>" required><br><br>
 
-        <label for="current_password">Senha Atual:</label>
-        <input type="password" name="current_password" required><br><br>
+            <label for="current_password">Senha Atual:</label>
+            <input type="password" name="current_password" required><br><br>
 
-        <label for="password">Nova Senha:</label>
-        <input type="password" name="password"><br><br>
+            <label for="password">Nova Senha:</label>
+            <input type="password" name="password"><br><br>
 
-        <input type="submit" class="button" value="ATUALIZAR PERFIL">
-
+            <input type="submit" class="button" value="ATUALIZAR PERFIL">
+            <a href="<?= base_url('perfil/delete') ?>" class="button" onclick="return confirm('Tem certeza que deseja excluir sua conta?')">EXCLUIR CONTA</a>
+            <br>
+            <a href="/logout" class="button">PAGINA INICIAL</a>
+            <a href="/produtos" class="button">VOLTAR</a>
+    </div>
 
     </form>
+
     <br>
-    <a href="/logout" class="button">PAGINA INICIAL</a>
-    <a href="/produtos" class="button">VOLTAR</a>
-    <a href="<?= base_url('perfil/delete') ?>" class="button" onclick="return confirm('Tem certeza que deseja excluir sua conta?')">EXCLUIR CONTA</a>
+
+
 
 
 </body>

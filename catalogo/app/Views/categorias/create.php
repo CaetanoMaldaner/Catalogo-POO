@@ -63,7 +63,7 @@
         <label for="nome">Nome da Categoria:</label>
         <input type="text" name="nome" required><br><br>
         <input type="submit" value="Criar Categoria">
-        <a href="<?= base_url('produtos') ?>" class="button">RETORNAR PARA O CATALOGO</a>
+        <a href="<?= base_url('produtos') ?>" class="button">VOLTAR </a>
        
     </form>
 </body>

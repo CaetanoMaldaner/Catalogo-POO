@@ -29,7 +29,8 @@
 
         label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            
         }
 
         input[type="text"],
@@ -47,7 +48,7 @@
             text-decoration: none;
             background-color: #845fda56;
             color: #fff;
-            border-radius: 5px;
+            border-radius: 20px;
             transition: background-color 0.3s ease;
         }
 
@@ -80,6 +81,7 @@
         <input type="file" name="imagem"><br><br>
 
         <input type="submit" value="Cadastrar Produto">
+        <a href="/produtos" class="button">VOLTAR</a>
     </form>
 </body>
 

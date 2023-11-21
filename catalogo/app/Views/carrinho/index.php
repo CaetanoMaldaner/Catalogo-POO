@@ -4,6 +4,21 @@
 <head>
     <title>Carrinho de Compras</title>
     <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #6f42c1;
+            background-image: url("/imgs/CarrinhoBackground.jpg");
+
+            background-repeat: no-repeat;
+            background-size: 100%;
+
+        }
+
         /* Estilos para o container dos produtos no carrinho */
         .cart-container {
             display: flex;
@@ -43,7 +58,7 @@
             font-size: 16px;
             font-weight: bold;
             color: #f60;
-            
+
         }
 
         /* Estilos para o total do item no carrinho */
@@ -102,11 +117,13 @@
                 <button type="submit">Finalizar Compra</button>
             </form>
 
+        <?php else : ?>
+            <p>Seu carrinho está vazio.</p>
+            <button><a href="<?= site_url('produtos') ?>">Ir às Compras</a></button>
+        <?php endif; ?>
+
         </div>
-    <?php else : ?>
-        <p>Seu carrinho está vazio.</p>
-        <button><a href="<?= site_url('produtos') ?>">Ir às Compras</a></button>
-    <?php endif; ?>
+
 
 </body>
 
