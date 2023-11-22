@@ -19,6 +19,7 @@
 
         h1 {
             margin-bottom: 20px;
+         
         }
 
         form {
@@ -40,6 +41,7 @@
             padding: 8px;
             margin-bottom: 15px;
             box-sizing: border-box;
+            border-radius: 10px;
         }
 
         input[type="submit"] {
@@ -50,10 +52,12 @@
             color: #fff;
             border-radius: 20px;
             transition: background-color 0.3s ease;
+      
         }
 
         input[type="submit"]:hover {
             background-color: #a172ee;
+            border-radius: 5px;
         }
     </style>
 </head>

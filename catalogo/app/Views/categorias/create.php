@@ -35,7 +35,7 @@
             padding: 8px;
             margin-bottom: 15px;
             box-sizing: border-box;
-            border-radius: 8px;
+            border-radius: 10px;
         }
 
         input[type="submit"],
@@ -45,7 +45,7 @@
             text-decoration: none;
             background-color: #845fda56;
             color: #fff;
-            border-radius: 5px;
+            border-radius: 10px;
             transition: background-color 0.3s ease;
         }
 

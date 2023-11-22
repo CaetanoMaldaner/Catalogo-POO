@@ -11,7 +11,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            height: 90vh;
             margin: 0;
             background-color: #6f42c1;
             background-image: url("/imgs/LoginRegisterBackground.jpg");

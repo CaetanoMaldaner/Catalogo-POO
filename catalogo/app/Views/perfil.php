@@ -17,7 +17,7 @@
             margin: 0;
             background-color: #6f42c1;
             background-image: url("/imgs/PerfilBackground.jpg");
-
+            color:#fff;
             background-repeat: no-repeat;
             background-size: 120%;
 
@@ -36,6 +36,7 @@
 
         input {
             margin-bottom: 15px;
+            border-radius: 5px;
         }
 
         .button {
@@ -45,7 +46,7 @@
             text-decoration: none;
             color: #fff;
             background-color: #845fda56;
-            border-radius: 5px;
+            border-radius: 10px;
             margin-bottom: 5px;
         }
 
