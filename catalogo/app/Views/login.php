@@ -16,6 +16,7 @@
             background-image: url("/imgs/LoginRegisterBackground.jpg");
             background-repeat: no-repeat;
             background-size: 100%;
+      
 
         }
 
@@ -24,8 +25,9 @@
             position: absolute;
             right: 0;
             margin: 70px;
-
+            color: #fff;
         }
+        
     </style>
 </head>
 
@@ -33,6 +35,7 @@
     <div class="container">
         <div class="header">
             <a href="/register" class="button">REGISTER</a>
+            
         </div>
 
 

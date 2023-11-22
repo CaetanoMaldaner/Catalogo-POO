@@ -13,10 +13,9 @@
             margin: 0;
             background-color: #6f42c1;
             background-image: url("/imgs/CarrinhoBackground.jpg");
-
+            color:#ddd;
             background-repeat: no-repeat;
             background-size: 100%;
-
         }
 
         /* Estilos para o container dos produtos no carrinho */
@@ -24,6 +23,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+    
         }
 
         /* Estilos para cada item do carrinho */
@@ -73,8 +73,9 @@
             width: 30%;
             margin: 10px;
             padding: 10px;
-            border: 1px solid #ddd;
-            background-color: #946ddc;
+            background-color:  #4b209b;
+            border-radius: 10px;
+            opacity: 90%;
         }
     </style>
 </head>
